@@ -4,10 +4,10 @@ public class Student {
     private int number;
     private String name;
     private Status status;
-    private ArrayList<String[]> subjectLists;
+    private ArrayList<String> subjectLists;
 
     // Student 객체가 생성될때 학생 정보 초기화
-    public Student(int number, String name, Status status, ArrayList<String[]> subjectLists) {
+    public Student(int number, String name, Status status, ArrayList<String> subjectLists) {
         this.number = number;
         this.name = name;
         this.status = status;
@@ -26,7 +26,7 @@ public class Student {
         return this.status;
     }
     // list getter
-    public ArrayList<String[]> getSubjectLists() {
+    public ArrayList<String> getSubjectLists() {
         return this.subjectLists;
     }
 }
