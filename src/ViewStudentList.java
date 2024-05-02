@@ -1,11 +1,13 @@
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ViewStudentList {
     // 규성님한테 받아올 학생 정보 리스트입니다.
-    private LinkedList<Student> studentsList;
+    private ArrayList<Student> studentsList;
 
     // studentList 초기화
-    public ViewStudentList(LinkedList<Student> studentsList) {
+    public ViewStudentList(ArrayList<Student> studentsList) {
         this.studentsList = studentsList;
     }
 
