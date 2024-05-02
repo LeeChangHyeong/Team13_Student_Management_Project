@@ -5,7 +5,7 @@ public class ViewStudentList {
     private LinkedList<String[]> studentList;
 
     // studentList 초기화
-    public ViewStudentList (LinkedList<String[]> studentList) {
+    public ViewStudentList(LinkedList<String[]> studentList) {
         this.studentList = studentList;
     }
 
@@ -14,7 +14,7 @@ public class ViewStudentList {
         System.out.println("-----------------------------------------");
         System.out.println("수강생 목록을 조회합니다.");
         System.out.println("-----------------------------------------");
-        for(String[] s: studentList) {
+        for (String[] s : studentList) {
             String studentNumber = s[0];
             String studentName = s[1];
 
