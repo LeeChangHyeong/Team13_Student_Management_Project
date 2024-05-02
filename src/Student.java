@@ -13,18 +13,21 @@ public class Student {
         this.status = status;
         this.subjectLists = subjectLists;
     }
+
     // number getter
     public int getNumber() {
         return this.number;
     }
+
     // name getter
     public String getName() {
         return this.name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
+
     // status getter
     public Status getStatus() {
         return this.status;
