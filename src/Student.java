@@ -21,10 +21,20 @@ public class Student {
     public String getName() {
         return this.name;
     }
+
+    public void setName() {
+        this.name = name;
+    }
     // status getter
     public Status getStatus() {
         return this.status;
     }
+
+    // status setter
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     // list getter
     public ArrayList<String> getSubjectLists() {
         return this.subjectLists;
