@@ -62,4 +62,22 @@ public class StudentListManager {
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
         }
     }
+
+    // 상태별 수강생 목록 조회
+    public void printStudentListByStatus(String status) throws BadStatusException {
+        System.out.println("-----------------------------------------");
+        System.out.println(Status.getStatusByString(status) + " 상태의 수강생 목록을 조회합니다.");
+        System.out.println("-----------------------------------------");
+
+        for (Student s : studentsList) {
+            if (s.getStatus() == Status.getStatusByString(status)) {
+                System.out.println("수강생 고유번호: " + s.getNumber());
+                System.out.println("수강생 이름: " + s.getName());
+                System.out.println("수강생 상태: " + s.getStatus());
+                System.out.println(s.getName() + "님이 선택한 과목명: " + s.getSubjectLists());
+                System.out.println();
+            }
+        }
+    }
+
 }
