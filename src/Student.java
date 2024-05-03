@@ -1,3 +1,5 @@
+import Exceptions.BadStatusException;
+
 import java.util.ArrayList;
 
 public class Student {
@@ -34,17 +36,8 @@ public class Student {
     }
 
     // status setter
-    public void setStatus(String status) {
-        if(status.equals("Green")) {
-            this.status = Status.Green;
-        } else if (status.equals("Yellow")) {
-            this.status = Status.Yellow;
-        } else if (status.equals("Red")) {
-            this.status = Status.Red;
-        } else {
-            // 다른 것이 들어왔을때 예외처리 해줘야 합니다.
-            System.exit(1);
-        }
+    public void setStatus(String status) throws BadStatusException {
+        this.status = Status.getStatusByString(status);
     }
 
     // list getter
