@@ -78,6 +78,18 @@ public class StudentListManager {
                 System.out.println();
             }
         }
+        System.out.println();
     }
 
+    // 수강생 데이터 삭제
+    public void deleteStudentData(int studentNumber) {
+        for (int i = 0; i < studentsList.size(); i++) {
+            if (studentsList.get(i).getNumber() == studentNumber) {
+                studentsList.remove(i);
+                System.out.println("학생 데이터가 성공적으로 삭제되었습니다.");
+                return;
+            }
+        }
+        System.out.println("해당 번호의 학생을 찾을 수 없습니다.");
+    }
 }
