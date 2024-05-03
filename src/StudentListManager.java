@@ -1,3 +1,5 @@
+import Exceptions.BadStatusException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,7 +29,7 @@ public class StudentListManager {
     }
 
     // 번호와 맞는 수강생을 찾아 수정하는 메서드
-    public void modifyStudent(int studentNumber) throws IOException {
+    public void modifyStudent(int studentNumber) throws IOException, BadStatusException {
         Student student = null;
         String lastName = null;
         Status lastStatus = null;
@@ -43,19 +45,21 @@ public class StudentListManager {
             System.out.println("번호와 맞는 수강생이 없습니다.");
         } else {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
             System.out.print("수정할 이름을 입력하세요: ");
             student.setName(br.readLine());
+
             System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
             System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
             student.setStatus(br.readLine());
             System.out.println();
-            System.out.println(student.getName() + "의 상태가 " + student.getName() + "(으)로 변경되었습니다.");
+            System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
             System.out.println();
+
             System.out.println("변경된 정보");
 
             System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
         }
     }
-
 }
