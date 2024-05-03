@@ -8,20 +8,25 @@ public class Main {
         TestClass tClass = new TestClass();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("등록할 학생명 입력 : ");
-        String name = sc.next();
-        tClass.addStudentName(name);
+        while (true) {
+            System.out.print("학생을 등록하려면 1번 프로그램 종료는 2번 입력 : ");
+            int choice = sc.nextInt();
+            if (choice == 1) {
 
-        System.out.print("등록할 학생의 고유번호 입력 : ");
-        int id = sc.nextInt();
-        tClass.addStudentId(id);
+                tClass.addStudentName();
 
-        System.out.print("등록할 학생의 과목명 입력 : ");
-        String subject = sc.next();
-        tClass.addStudentSubject(subject);
+                tClass.addStudentId();
 
-        System.out.println("저장된 학생의 이름 : " + tClass.getStudentName());
-        System.out.println("저장된 학생의 고유번호 : " + tClass.getStudentId());
-        System.out.println("저장된 학생의 과목명 : " + tClass.getStudentSubject());
+                tClass.addStudentSubject();
+
+                System.out.println("저장된 학생의 이름 : " + tClass.getStudentName());
+                System.out.println("저장된 학생의 고유번호 : " + tClass.getStudentId());
+                System.out.println("저장된 학생의 과목명 : " + tClass.getStudentSubject());
+            } else if (choice == 2) {
+                return;
+            } else {
+                System.out.println("1번 또는 2번만 입력하세요");
+            }
+        }
     }
 }
