@@ -1,10 +1,8 @@
-package Test;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class TestClass {
+public class mainclass {
     // 개행문자 처리를 위해 스캐너 객체를 두개로 나눔
     // 첫 번째 스캐너객체는 띄어쓰기 없는 문자열을 위해
     Scanner sc = new Scanner(System.in);
@@ -38,7 +36,7 @@ public class TestClass {
     }
 
     // 생성자를이용,TestClass 클래스의 객체를 생성하고 ArrayList로 초기화함.
-    public TestClass() {
+    public mainclass() {
         studentName = new ArrayList<>();
         studentId = new ArrayList<>();
         studentSubject = new ArrayList<>();
