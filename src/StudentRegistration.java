@@ -174,7 +174,7 @@ public class StudentRegistration {
     // 학생의 상태 저장
     public void addStudentStatus(Student student) throws BadStatusException, IOException {
         System.out.print("등록할 학생의 상태 입력 (Green, Yellow, Red 중 한 가지를 입력해주세요.): ");
-        Status.getStatusByString(br.readLine());
+        student.setStatus(br.readLine());
     }
     // 학생 고유번호 getter
     public ArrayList<Integer> getStudentId() {
