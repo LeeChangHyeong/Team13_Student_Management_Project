@@ -1,3 +1,5 @@
+import Exceptions.BadStatusException;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -11,10 +13,11 @@ public class StudentRegistration {
     public ArrayList<String> studentName;
     public ArrayList<Integer> studentId;
     public ArrayList<String> studentSubject;
+    public ArrayList<Student> studentArrayList = new ArrayList<>();
 
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
-    public void start() {
+    public void start() throws BadStatusException {
         while (true) {
             System.out.println("학생 등록 (1)");
             System.out.println("정보 보기 (2)");
@@ -28,8 +31,11 @@ public class StudentRegistration {
                 addStudentName(student);
                 addStudentId(student);
                 addStudentSubject(student);
+                addStudentStatus(student);
+
+                studentArrayList.add(student);
             } else if (choice.equals("2")) {
-                chooseWant();
+
             } else if (choice.equals("3")) {
                 return;
             } else {
@@ -68,11 +74,6 @@ public class StudentRegistration {
                 System.out.println("학생이름에는 숫자가 입력될 수 없습니다.");
             }
         }
-    }
-
-    // 학생 이름 getter
-    public ArrayList<String> getStudentName() {
-        return studentName;
     }
 
     // 학생의 과목 이름 배열에 저장. 필수과목, 선택과목 나눠서 받기 끝
@@ -137,17 +138,14 @@ public class StudentRegistration {
             }
         }
     }
+
+    // 학생의 상태 저장
+    public void addStudentStatus(Student student) throws BadStatusException {
+        System.out.print("등록할 학생의 상태 입력 (Green, Yellow, Red 중 한 가지를 입력해주세요.): ");
+        Status.getStatusByString(sc.next());
+    }
     // 학생 고유번호 getter
     public ArrayList<Integer> getStudentId() {
         return studentId;
-    }
-
-    // 사용자가 선택할 수 있는 선택지
-    public void chooseWant() {
-        System.out.println("----------------------------");
-        System.out.println("저장된 모든 학생의 이름 : " + getStudentName());
-        System.out.println("저장된 모든 학생의 고유번호 : " + getStudentId());
-        System.out.println("저장된 모든 학생의 과목명 : " + getStudentSubject());
-        System.out.println("----------------------------");
     }
 }
