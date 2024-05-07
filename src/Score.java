@@ -58,7 +58,16 @@ class Score {
 
     // 점수를 기준으로 등급을 계산하는 메서드
     private String calculateGrade(int score) {
-        if (subject.equals("자바")) {           //나중에 과목이름으로 변경
+        String type = "";
+
+        for(Subject s: Main.subjects) {
+            if(s.getId() == subjectId) {
+                type = s.getType();
+                break;
+            }
+        }
+
+        if (type.equals("필수")) {
             if (score >= 95) {
                 return "A";
             } else if (score >= 90) {
@@ -72,7 +81,7 @@ class Score {
             } else {
                 return "N";
             }
-        } else if (subject.equals("디자인 패턴")) {      //else로 바꿔도 됨
+        } else if (type.equals("선택")) {      //else로 바꿔도 됨
             if (score >= 90) {
                 return "A";
             } else if (score >= 80) {
