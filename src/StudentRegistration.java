@@ -14,14 +14,15 @@ public class StudentRegistration {
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() throws BadStatusException, IOException {
         while (true) {
+            System.out.println("-----------------------------------------");
             System.out.println("수강생 등록 (1)");
             System.out.println("정보 보기 (2)");
             System.out.println("정보 수정 (3)");
             System.out.println("정보 삭제 (4)");
             System.out.println("프로그램 종료 (5)");
             System.out.print("입력 : ");
-
             String choice = br.readLine();
+            System.out.println("-----------------------------------------");
             if (choice.equals("1")) {
                 Student student = new Student();
                 Subjects subjects = new Subjects();
@@ -37,9 +38,9 @@ public class StudentRegistration {
                     System.out.println("전체 수강생 조회 (1)");
                     System.out.println("상태별 수강생 조회 (2)");
                     System.out.println("돌아가기 (3)");
-
+                    System.out.print("입력 : ");
                     String str = br.readLine();
-
+                    System.out.println("-----------------------------------------");
                     if (str.equals("1")) {
                         studentListManager.printStudentList();
                     } else if (str.equals("2")) {
@@ -74,24 +75,23 @@ public class StudentRegistration {
 
             // 받은 문자열 하나씩 검사하는 부분
             for (char c : name.toCharArray()) {
-                if (Character.isLetter(c)) {
+                if (Character.isDigit(c)) {
                     isString = true;
                     break;
                 }
             }
-            // 위에 검사한 결과가 true일 경우에만 if 실행
-            // 숫자가 하나라도 섞여있어서 false일 경우 else 실행
-            if (isString == true) {
+            // 조규성 : 학생 이름에 숫자 + 문자가 올 경우 등록이 되는 버그 발생
+            // 조규성 : 위에 if (Character.hasDigit(c)) 을 if (Character.isDigit(c)) 으로 변경.
+            if (isString) {
+                System.out.println("학생이름에는 숫자가 입력될 수 없습니다.");
+            } else {
                 student.setName(name);
                 break;
-            } else {
-                System.out.println("학생이름에는 숫자가 입력될 수 없습니다.");
             }
         }
     }
 
-    // 학생의 과목 이름 배열에 저장. 필수과목, 선택과목 나눠서 받기 끝
-    // 하지만 배열에 저장되는건 2가지 전부 한 인덱스에 저장
+    // 학생의 과목 이름 배열에 저장. 필수과목, 선택과목 나눠서 받기
     public void addStudentSubject(Student student, Subjects subjects) throws IOException {
         ArrayList<String> mainSubjectList = new ArrayList<>();
         ArrayList<String> choiceSubjectList = new ArrayList<>();
@@ -101,7 +101,7 @@ public class StudentRegistration {
             System.out.print("등록할 학생의 필수 과목 3개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
             String subject = br.readLine();
             switch (subject) {
-                case "자바":
+                case "Java":
                 case "객체지향":
                 case "Spring":
                 case "JPA":
@@ -112,18 +112,21 @@ public class StudentRegistration {
                     if (subject.equals("exit") && mainSubjectList.size() >= 3) {
                         break A;
                     } else {
+                        System.out.println("-----------------------------------------");
                         System.out.println("필수 과목을 3가지 이상 입력해주세요.");
+                        System.out.println("-----------------------------------------");
                         break;
                     }
                 default:
+                    System.out.println("-----------------------------------------");
                     System.out.println("정확한 필수 과목명 입력");
+                    System.out.println("-----------------------------------------");
             }
         }
         // 필수 과목 저장
         subjects.setMainSubjects(mainSubjectList);
 
         // 선택과목 두가지 선택하는 로직
-        // 현재 띄어쓰기 때문에 수정중. 스캐너 객체를 하나 더 만들어서 해결.
         A:
         while (true) {
             System.out.print("학생의 선택과목 2개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
@@ -161,9 +164,9 @@ public class StudentRegistration {
             if (isInteger(id)) {
                 // TODO: 나중에 Student 배열 관리할때 다시 구현 해야합니다.
                 if (studentListManager.idCheck(Integer.parseInt(id))) {
-                    System.out.println("----------------------");
+                    System.out.println("-----------------------------------------");
                     System.out.println("중복된 고유번호 입니다.");
-                    System.out.println("----------------------");
+                    System.out.println("-----------------------------------------");
                     continue;
                 } else {
                     student.setId(Integer.parseInt(id));
@@ -183,11 +186,20 @@ public class StudentRegistration {
             return false;
         }
     }
-
     // 학생의 상태 저장
+    // 조규성 : 학생의 상태 오입력시 재입력 요구 코드 추가
     public void addStudentStatus(Student student) throws BadStatusException, IOException {
-        System.out.print("등록할 학생의 상태 입력 (Green, Yellow, Red 중 한 가지를 입력해주세요.): ");
-        student.setStatus(br.readLine());
+        while (true) {
+            System.out.print("등록할 학생의 상태 입력 (Green, Yellow, Red 중 한 가지를 입력해주세요.): ");
+            String statusColor = br.readLine();
+            if (statusColor.equals("Green")
+                    || statusColor.equals("Yellow")
+                    || statusColor.equals("Red")) {
+                student.setStatus(statusColor);
+                break;
+            } else {
+                System.out.println("정확한 상태명을 입력해주세요");
+            }
+        }
     }
-
 }
