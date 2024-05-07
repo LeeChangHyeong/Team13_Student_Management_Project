@@ -20,7 +20,7 @@ public class StudentListManager {
         System.out.println("수강생 목록을 조회합니다.");
         System.out.println("-----------------------------------------");
         for (Student s : studentsList) {
-            System.out.println("수강생 고유번호: " + s.getNumber());
+            System.out.println("수강생 고유번호: " + s.getId());
             System.out.println("수강생 이름: " + s.getName());
             System.out.println("수강생 상태: " + s.getStatus());
             System.out.println(s.getName() + "님이 선택한 과목명: " + s.getSubjectLists());
@@ -35,7 +35,7 @@ public class StudentListManager {
         Status lastStatus = null;
 
         for (Student s : studentsList) {
-            if (s.getNumber() == studentNumber) {
+            if (s.getId() == studentNumber) {
                 student = s;
                 lastName = s.getName();
                 lastStatus = s.getStatus();
@@ -71,7 +71,7 @@ public class StudentListManager {
 
         for (Student s : studentsList) {
             if (s.getStatus() == Status.getStatusByString(status)) {
-                System.out.println("수강생 고유번호: " + s.getNumber());
+                System.out.println("수강생 고유번호: " + s.getId());
                 System.out.println("수강생 이름: " + s.getName());
                 System.out.println("수강생 상태: " + s.getStatus());
                 System.out.println(s.getName() + "님이 선택한 과목명: " + s.getSubjectLists());
@@ -84,7 +84,7 @@ public class StudentListManager {
     // 수강생 데이터 삭제
     public void deleteStudentData(int studentNumber) {
         for (int i = 0; i < studentsList.size(); i++) {
-            if (studentsList.get(i).getNumber() == studentNumber) {
+            if (studentsList.get(i).getId() == studentNumber) {
                 studentsList.remove(i);
                 System.out.println("학생 데이터가 성공적으로 삭제되었습니다.");
                 return;

@@ -3,14 +3,14 @@ import Exceptions.BadStatusException;
 import java.util.ArrayList;
 
 public class Student {
-    private int number;
+    private int id;
     private String name;
     private Status status;
     private ArrayList<String> subjectLists;
 
     // number getter
-    public int getNumber() {
-        return this.number;
+    public int getId() {
+        return this.id;
     }
 
     // name getter
@@ -20,6 +20,10 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // status getter
