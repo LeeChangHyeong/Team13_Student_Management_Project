@@ -46,5 +46,4 @@ public class Student {
     public void getChoiceSubjcetList() {
         subjects.getChoiceSubjcetList();
     }
-
 }
