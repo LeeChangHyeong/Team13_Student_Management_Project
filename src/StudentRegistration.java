@@ -126,12 +126,14 @@ public class StudentRegistration {
             System.out.print("등록할 학생의 고유번호 입력 : ");
             if (sc.hasNextInt()) {
                 int id = sc.nextInt();
-                if (studentId.contains(id) == true) {
-                    System.out.println("중복된 고유번호입니다.");
-                } else {
-                    studentId.add(id);
-                    break;
-                }
+                // TODO: 나중에 Student 배열 관리할때 다시 구현 해야합니다.
+//                if (studentId.contains(id) == true) {
+//                    System.out.println("중복된 고유번호입니다.");
+//                } else {
+//                    studentId.add(id);
+//                    break;
+//                }
+                student.setId(id);
             } else {
                 System.out.println("고유번호는 숫자만 입력이 가능합니다.");
                 sc.next();// 잘못 입력된 값을 버리는 부분.
