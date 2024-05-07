@@ -1,6 +1,5 @@
 import Exceptions.BadStatusException;
 
-import javax.swing.text.Style;
 import java.util.*;
 import java.io.*;
 
@@ -18,7 +17,8 @@ public class StudentRegistration {
             System.out.println("수강생 등록 (1)");
             System.out.println("정보 보기 (2)");
             System.out.println("정보 수정 (3)");
-            System.out.println("프로그램 종료 (4)");
+            System.out.println("정보 삭제 (4)");
+            System.out.println("프로그램 종료 (5)");
             System.out.print("입력 : ");
 
             String choice = br.readLine();
@@ -40,7 +40,7 @@ public class StudentRegistration {
 
                     String str = br.readLine();
 
-                    if(str.equals("1")) {
+                    if (str.equals("1")) {
                         studentListManager.printStudentList();
                     } else if (str.equals("2")) {
                         System.out.print("조회하고 싶은 수강생 상태를 입력 (Green, Yellow, Red 중 하나를 입력하세요.): ");
@@ -52,8 +52,12 @@ public class StudentRegistration {
                     }
                 }
             } else if (choice.equals("3")) {
-
+                System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                studentListManager.modifyStudent(Integer.parseInt(br.readLine()));
             } else if (choice.equals("4")) {
+                System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
+                studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
+            } else if (choice.equals("5")) {
                 return;
             } else {
                 System.out.println("정확한 번호를 입력하세요");
@@ -109,6 +113,7 @@ public class StudentRegistration {
                         break A;
                     } else {
                         System.out.println("필수 과목을 3가지 이상 입력해주세요.");
+                        break;
                     }
                 default:
                     System.out.println("정확한 필수 과목명 입력");
@@ -135,6 +140,7 @@ public class StudentRegistration {
                         break A;
                     } else {
                         System.out.println("선택 과목을 2가지 이상 입력해주세요.");
+                        break;
                     }
                 default:
                     System.out.println("정확한 선택과목명 입력");
