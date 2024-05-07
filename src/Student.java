@@ -6,7 +6,7 @@ public class Student {
     private int id;
     private String name;
     private Status status;
-    private ArrayList<String> subjectLists;
+    private Subjects subjects;
 
     // number getter
     public int getId() {
@@ -36,8 +36,7 @@ public class Student {
         this.status = Status.getStatusByString(status);
     }
 
-    // list getter
-    public ArrayList<String> getSubjectLists() {
-        return this.subjectLists;
+    public void setSubjects(Subjects subjects) {
+        this.subjects = subjects;
     }
 }
