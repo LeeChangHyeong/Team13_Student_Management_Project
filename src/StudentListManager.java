@@ -1,5 +1,6 @@
 import Exceptions.BadStatusException;
 
+import javax.swing.text.Style;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -49,10 +50,22 @@ public class StudentListManager {
                 lastStatus = s.getStatus();
             }
         }
+
         if (student == null) {
             System.out.println("번호와 맞는 수강생이 없습니다.");
         } else {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("----------------------------------");
+            System.out.println("현재 선택한 고유번호 정보");
+            System.out.println("----------------------------------");
+            System.out.println("수강생 고유번호: " + student.getId());
+            System.out.println("수강생 이름: " + student.getName());
+            System.out.println("수강생 상태: " + student.getStatus());
+            System.out.print(student.getName() + "님이 선택한 필수 과목명: ");
+            student.getMainSubjects();
+            System.out.print(student.getName() + "님이 선택한 선택 과목명: ");
+            student.getChoiceSubjcetList();
+            System.out.println();
 
             System.out.print("수정할 이름을 입력하세요: ");
             student.setName(br.readLine());
