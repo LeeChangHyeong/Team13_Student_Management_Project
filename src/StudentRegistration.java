@@ -12,6 +12,7 @@ public class StudentRegistration {
     public ArrayList<Integer> studentId;
     public ArrayList<String> studentSubject;
 
+
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() {
         while (true) {
@@ -22,9 +23,11 @@ public class StudentRegistration {
 
             String choice = sc.next();
             if (choice.equals("1")) {
-                addStudentName();
-                addStudentId();
-                addStudentSubject();
+                Student student = new Student();
+
+                addStudentName(student);
+                addStudentId(student);
+                addStudentSubject(student);
             } else if (choice.equals("2")) {
                 chooseWant();
             } else if (choice.equals("3")) {
@@ -43,11 +46,12 @@ public class StudentRegistration {
     }
 
     //학생 이름 배열에 저장, 숫자 입력시 재입력 요구
-    public void addStudentName() {
+    public void addStudentName(Student student) {
         while (true) {
             System.out.print("등록할 학생명 입력 : ");
             String name = sc.next();
             boolean isString = false;
+
             // 받은 문자열 하나씩 검사하는 부분
             for (char c : name.toCharArray()) {
                 if (Character.isLetter(c)) {
@@ -58,7 +62,7 @@ public class StudentRegistration {
             // 위에 검사한 결과가 true일 경우에만 if 실행
             // 숫자가 하나라도 섞여있어서 false일 경우 else 실행
             if (isString == true) {
-                studentName.add(name);
+                student.setName(name);
                 break;
             } else {
                 System.out.println("학생이름에는 숫자가 입력될 수 없습니다.");
@@ -73,7 +77,7 @@ public class StudentRegistration {
 
     // 학생의 과목 이름 배열에 저장. 필수과목, 선택과목 나눠서 받기 끝
     // 하지만 배열에 저장되는건 2가지 전부 한 인덱스에 저장
-    public void addStudentSubject() {
+    public void addStudentSubject(Student student) {
         List<String> sublist = new ArrayList<>();
         while (sublist.size() < 3) {
             System.out.print("등록할 학생의 필수 과목 3개 입력 : ");
@@ -116,7 +120,7 @@ public class StudentRegistration {
     }
 
     // 학생의 고유번호 배열에 저장.
-    public void addStudentId() {
+    public void addStudentId(Student student) {
         while (true) {
             System.out.print("등록할 학생의 고유번호 입력 : ");
             if (sc.hasNextInt()) {
