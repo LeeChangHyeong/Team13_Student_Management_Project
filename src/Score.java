@@ -18,8 +18,15 @@ class Score {
     }
 
     // 과목명 getter
-    public String getSubject() {
-        return subject;
+    public String getSubjectName() {
+        String str = "";
+        for(Subject s: Main.subjects) {
+            if (subjectId == s.getId()) {
+                str = s.getName();
+                break;
+            }
+        }
+        return str;
     }
 
     // 회차 getter
