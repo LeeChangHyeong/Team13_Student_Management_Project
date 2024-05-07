@@ -1,5 +1,6 @@
 import Exceptions.BadStatusException;
 
+import javax.swing.text.Style;
 import java.util.*;
 import java.io.*;
 
@@ -14,9 +15,10 @@ public class StudentRegistration {
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() throws BadStatusException, IOException {
         while (true) {
-            System.out.println("학생 등록 (1)");
+            System.out.println("수강생 등록 (1)");
             System.out.println("정보 보기 (2)");
-            System.out.println("프로그램 종료 (3)");
+            System.out.println("정보 수정 (3)");
+            System.out.println("프로그램 종료 (4)");
             System.out.print("입력 : ");
 
             String choice = br.readLine();
@@ -31,8 +33,27 @@ public class StudentRegistration {
 
                 studentArrayList.add(student);
             } else if (choice.equals("2")) {
-                studentListManager.printStudentList();
+                while (true) {
+                    System.out.println("전체 수강생 조회 (1)");
+                    System.out.println("상태별 수강생 조회 (2)");
+                    System.out.println("돌아가기 (3)");
+
+                    String str = br.readLine();
+
+                    if(str.equals("1")) {
+                        studentListManager.printStudentList();
+                    } else if (str.equals("2")) {
+                        System.out.print("조회하고 싶은 수강생 상태를 입력 (Green, Yellow, Red 중 하나를 입력하세요.): ");
+                        studentListManager.printStudentListByStatus(br.readLine());
+                    } else if (str.equals("3")) {
+                        break;
+                    } else {
+                        System.out.println("올바른 숫자를 입력해주세요.");
+                    }
+                }
             } else if (choice.equals("3")) {
+
+            } else if (choice.equals("4")) {
                 return;
             } else {
                 System.out.println("정확한 번호를 입력하세요");
@@ -71,7 +92,8 @@ public class StudentRegistration {
         ArrayList<String> mainSubjectList = new ArrayList<>();
         ArrayList<String> choiceSubjectList = new ArrayList<>();
 
-        A: while (true) {
+        A:
+        while (true) {
             System.out.print("등록할 학생의 필수 과목 3개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
             String subject = br.readLine();
             switch (subject) {
@@ -83,7 +105,7 @@ public class StudentRegistration {
                     mainSubjectList.add(subject);
                     break;
                 case "exit":
-                    if(subject.equals("exit") && mainSubjectList.size() >= 3) {
+                    if (subject.equals("exit") && mainSubjectList.size() >= 3) {
                         break A;
                     } else {
                         System.out.println("필수 과목을 3가지 이상 입력해주세요.");
@@ -97,7 +119,8 @@ public class StudentRegistration {
 
         // 선택과목 두가지 선택하는 로직
         // 현재 띄어쓰기 때문에 수정중. 스캐너 객체를 하나 더 만들어서 해결.
-        A: while (true) {
+        A:
+        while (true) {
             System.out.print("학생의 선택과목 2개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
             String subject = br.readLine();
             switch (subject) {
@@ -108,7 +131,7 @@ public class StudentRegistration {
                     choiceSubjectList.add(subject);
                     break;
                 case "exit":
-                    if(subject.equals("exit") && choiceSubjectList.size() >= 2) {
+                    if (subject.equals("exit") && choiceSubjectList.size() >= 2) {
                         break A;
                     } else {
                         System.out.println("선택 과목을 2가지 이상 입력해주세요.");
@@ -131,7 +154,7 @@ public class StudentRegistration {
             String id = br.readLine();
             if (isInteger(id)) {
                 // TODO: 나중에 Student 배열 관리할때 다시 구현 해야합니다.
-                if(studentListManager.idCheck(Integer.parseInt(id))) {
+                if (studentListManager.idCheck(Integer.parseInt(id))) {
                     System.out.println("----------------------");
                     System.out.println("중복된 고유번호 입니다.");
                     System.out.println("----------------------");
