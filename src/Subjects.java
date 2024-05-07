@@ -12,15 +12,15 @@ public class Subjects {
     }
 
     public void getMainSubjects() {
-        System.out.println("필수 과목 조회: " + mainSubjectList);
+        System.out.println(mainSubjectList);
     }
 
-    public void setChoiceSubjcetList(ArrayList<String> mainSubjectList) {
-        this.mainSubjectList = mainSubjectList;
+    public void setChoiceSubjcetList(ArrayList<String> choiceSubjcetList) {
+        this.choiceSubjcetList = choiceSubjcetList;
     }
 
     public void getChoiceSubjcetList() {
-        System.out.println("선택 과목 조회: " + choiceSubjcetList);
+        System.out.println(choiceSubjcetList);
     }
 
     // 전체 출력
