@@ -1,41 +1,41 @@
 import Exceptions.BadStatusException;
 
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
+
 
 public class StudentRegistration {
-    // 개행문자 처리를 위해 스캐너 객체를 두개로 나눔
-    // 첫 번째 스캐너객체는 띄어쓰기 없는 문자열을 위해
-    Scanner sc = new Scanner(System.in);
-    // 두번째 스캐너 객체는 띄어쓰기가 있는 문자열을 위해
-    Scanner sc1 = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+
     public ArrayList<String> studentName;
     public ArrayList<Integer> studentId;
     public ArrayList<String> studentSubject;
     public ArrayList<Student> studentArrayList = new ArrayList<>();
+    StudentListManager studentListManager = new StudentListManager(studentArrayList);
 
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
-    public void start() throws BadStatusException {
+    public void start() throws BadStatusException, IOException {
         while (true) {
             System.out.println("학생 등록 (1)");
             System.out.println("정보 보기 (2)");
             System.out.println("프로그램 종료 (3)");
             System.out.print("입력 : ");
 
-            String choice = sc.next();
+            String choice = br.readLine();
             if (choice.equals("1")) {
                 Student student = new Student();
+                Subjects subjects = new Subjects();
 
                 addStudentName(student);
                 addStudentId(student);
-                addStudentSubject(student);
+                addStudentSubject(student, subjects);
                 addStudentStatus(student);
 
                 studentArrayList.add(student);
             } else if (choice.equals("2")) {
-
+                studentListManager.printStudentList();
             } else if (choice.equals("3")) {
                 return;
             } else {
@@ -52,10 +52,10 @@ public class StudentRegistration {
     }
 
     //학생 이름 배열에 저장, 숫자 입력시 재입력 요구
-    public void addStudentName(Student student) {
+    public void addStudentName(Student student) throws IOException {
         while (true) {
             System.out.print("등록할 학생명 입력 : ");
-            String name = sc.next();
+            String name = br.readLine();
             boolean isString = false;
 
             // 받은 문자열 하나씩 검사하는 부분
@@ -78,41 +78,61 @@ public class StudentRegistration {
 
     // 학생의 과목 이름 배열에 저장. 필수과목, 선택과목 나눠서 받기 끝
     // 하지만 배열에 저장되는건 2가지 전부 한 인덱스에 저장
-    public void addStudentSubject(Student student) {
-        List<String> sublist = new ArrayList<>();
-        while (sublist.size() < 3) {
-            System.out.print("등록할 학생의 필수 과목 3개 입력 : ");
-            String subject = sc.next();
+    public void addStudentSubject(Student student, Subjects subjects) throws IOException {
+        ArrayList<String> mainSubjectList = new ArrayList<>();
+        ArrayList<String> choiceSubjectList = new ArrayList<>();
+
+        A: while (true) {
+            System.out.print("등록할 학생의 필수 과목 3개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
+            String subject = br.readLine();
             switch (subject) {
                 case "자바":
                 case "객체지향":
                 case "Spring":
                 case "JPA":
                 case "MySQL":
-                    sublist.add(subject);
+                    mainSubjectList.add(subject);
                     break;
+                case "exit":
+                    if(subject.equals("exit") && mainSubjectList.size() >= 3) {
+                        break A;
+                    } else {
+                        System.out.println("필수 과목을 3가지 이상 입력해주세요.");
+                    }
                 default:
                     System.out.println("정확한 필수 과목명 입력");
             }
         }
+        // 필수 과목 저장
+        subjects.setMainSubjects(mainSubjectList);
+
         // 선택과목 두가지 선택하는 로직
         // 현재 띄어쓰기 때문에 수정중. 스캐너 객체를 하나 더 만들어서 해결.
-        while (sublist.size() < 5) {
-            System.out.print("학생의 선택과목 2개 입력 : ");
-            String subject = sc1.nextLine();
+        A: while (true) {
+            System.out.print("학생의 선택과목 2개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
+            String subject = br.readLine();
             switch (subject) {
                 case "디자인 패턴":
                 case "Spring Security":
                 case "Redis":
                 case "MongoDB":
-                    sublist.add(subject);
+                    choiceSubjectList.add(subject);
                     break;
+                case "exit":
+                    if(subject.equals("exit") && choiceSubjectList.size() >= 2) {
+                        break A;
+                    } else {
+                        System.out.println("선택 과목을 2가지 이상 입력해주세요.");
+                    }
                 default:
                     System.out.println("정확한 선택과목명 입력");
             }
         }
-        // 두가지 종류의 과목을 한번의 한 인덱스 안에 저장. / 로 구분
-        studentSubject.add(String.join("/", sublist));
+        // 선택 과목 저장
+        subjects.setChoiceSubjcetList(choiceSubjectList);
+
+        // 학생 객체에 과목들 저장
+        student.setSubjects(subjects);
     }
 
     // 학생 과목명 getter
@@ -121,30 +141,40 @@ public class StudentRegistration {
     }
 
     // 학생의 고유번호 배열에 저장.
-    public void addStudentId(Student student) {
+    public void addStudentId(Student student) throws IOException {
         while (true) {
             System.out.print("등록할 학생의 고유번호 입력 : ");
-            if (sc.hasNextInt()) {
-                int id = sc.nextInt();
+            String id = br.readLine();
+            if (isInteger(id)) {
                 // TODO: 나중에 Student 배열 관리할때 다시 구현 해야합니다.
-//                if (studentId.contains(id) == true) {
-//                    System.out.println("중복된 고유번호입니다.");
-//                } else {
-//                    studentId.add(id);
-//                    break;
-//                }
-                student.setId(id);
+                if(studentListManager.idCheck(Integer.parseInt(id))) {
+                    System.out.println("----------------------");
+                    System.out.println("중복된 고유번호 입니다.");
+                    System.out.println("----------------------");
+                    continue;
+                } else {
+                    student.setId(Integer.parseInt(id));
+                }
+                break;
             } else {
                 System.out.println("고유번호는 숫자만 입력이 가능합니다.");
-                sc.next();// 잘못 입력된 값을 버리는 부분.
             }
         }
     }
 
+    public boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     // 학생의 상태 저장
-    public void addStudentStatus(Student student) throws BadStatusException {
+    public void addStudentStatus(Student student) throws BadStatusException, IOException {
         System.out.print("등록할 학생의 상태 입력 (Green, Yellow, Red 중 한 가지를 입력해주세요.): ");
-        Status.getStatusByString(sc.next());
+        Status.getStatusByString(br.readLine());
     }
     // 학생 고유번호 getter
     public ArrayList<Integer> getStudentId() {
