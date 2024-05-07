@@ -23,7 +23,10 @@ public class StudentListManager {
             System.out.println("수강생 고유번호: " + s.getId());
             System.out.println("수강생 이름: " + s.getName());
             System.out.println("수강생 상태: " + s.getStatus());
-            System.out.println(s.getName() + "님이 선택한 과목명: " + s.getSubjectLists());
+            System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
+            s.getMainSubjects();
+            System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
+            s.getChoiceSubjcetList();
             System.out.println();
         }
     }
@@ -74,7 +77,10 @@ public class StudentListManager {
                 System.out.println("수강생 고유번호: " + s.getId());
                 System.out.println("수강생 이름: " + s.getName());
                 System.out.println("수강생 상태: " + s.getStatus());
-                System.out.println(s.getName() + "님이 선택한 과목명: " + s.getSubjectLists());
+                System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
+                s.getMainSubjects();
+                System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
+                s.getChoiceSubjcetList();
                 System.out.println();
             }
         }
@@ -91,5 +97,16 @@ public class StudentListManager {
             }
         }
         System.out.println("해당 번호의 학생을 찾을 수 없습니다.");
+    }
+
+    // 수강생 중복 id 검사
+    public boolean idCheck(int id) {
+        boolean checkId = false;
+        for (Student s : studentsList) {
+            if (s.getId() == id) {
+               checkId = true;
+            }
+        }
+        return checkId;
     }
 }
