@@ -1,22 +1,49 @@
+import Exceptions.BadStatusException;
+
+import java.util.ArrayList;
+
 public class Student {
-    public Student(String sequence, String studentName) {
+    private int id;
+    private String name;
+    private Status status;
+    private Subjects subjects;
+
+    // number getter
+    public int getId() {
+        return this.id;
     }
 
-    public boolean getName() {
-        return false;
+    // name getter
+    public String getName() {
+        return this.name;
     }
 
-    public void addScore(Subject subject, int examNumber, int score) {
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Object getId() {
-        return null;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void updateScore(Subject subject, int examNumber, int newScore) {
+    // status getter
+    public Status getStatus() {
+        return this.status;
     }
 
-    public String calculateGrade(Subject subject, int examNumber) {
-        return null;
+    // status setter
+    public void setStatus(String status) throws BadStatusException {
+        this.status = Status.getStatusByString(status);
+    }
+    public void setSubjects(Subjects subjects) {
+        this.subjects = subjects;
+    }
+
+    public void getMainSubjects() {
+        subjects.getMainSubjects();
+    }
+
+    public void getChoiceSubjcetList() {
+        subjects.getChoiceSubjcetList();
     }
 }
