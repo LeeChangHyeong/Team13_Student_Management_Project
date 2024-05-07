@@ -19,15 +19,20 @@ public class StudentListManager {
         System.out.println("-----------------------------------------");
         System.out.println("수강생 목록을 조회합니다.");
         System.out.println("-----------------------------------------");
-        for (Student s : studentsList) {
-            System.out.println("수강생 고유번호: " + s.getId());
-            System.out.println("수강생 이름: " + s.getName());
-            System.out.println("수강생 상태: " + s.getStatus());
-            System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
-            s.getMainSubjects();
-            System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
-            s.getChoiceSubjcetList();
+        if (studentsList.size() < 1) {
+            System.out.println("등록된 수강생이 없습니다.");
             System.out.println();
+        } else {
+            for (Student s : studentsList) {
+                System.out.println("수강생 고유번호: " + s.getId());
+                System.out.println("수강생 이름: " + s.getName());
+                System.out.println("수강생 상태: " + s.getStatus());
+                System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
+                s.getMainSubjects();
+                System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
+                s.getChoiceSubjcetList();
+                System.out.println();
+            }
         }
     }
 
@@ -72,6 +77,8 @@ public class StudentListManager {
         System.out.println(Status.getStatusByString(status) + " 상태의 수강생 목록을 조회합니다.");
         System.out.println("-----------------------------------------");
 
+        int count = 0;
+
         for (Student s : studentsList) {
             if (s.getStatus() == Status.getStatusByString(status)) {
                 System.out.println("수강생 고유번호: " + s.getId());
@@ -82,7 +89,12 @@ public class StudentListManager {
                 System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
                 s.getChoiceSubjcetList();
                 System.out.println();
+                count ++;
             }
+        }
+
+        if (count == 0) {
+            System.out.println(Status.getStatusByString(status) + "상태인 수강생이 없습니다.");
         }
         System.out.println();
     }
