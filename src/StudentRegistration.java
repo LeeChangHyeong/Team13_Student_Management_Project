@@ -7,12 +7,8 @@ import java.io.*;
 public class StudentRegistration {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
-    public ArrayList<String> studentName;
-    public ArrayList<Integer> studentId;
-    public ArrayList<String> studentSubject;
-    public ArrayList<Student> studentArrayList = new ArrayList<>();
-    StudentListManager studentListManager = new StudentListManager(studentArrayList);
+    private ArrayList<Student> studentArrayList = new ArrayList<>();
+    private StudentListManager studentListManager = new StudentListManager(studentArrayList);
 
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
@@ -42,13 +38,6 @@ public class StudentRegistration {
                 System.out.println("정확한 번호를 입력하세요");
             }
         }
-    }
-
-    // 생성자를이용,TestClass 클래스의 객체를 생성하고 ArrayList로 초기화함.
-    public StudentRegistration() {
-        studentName = new ArrayList<>();
-        studentId = new ArrayList<>();
-        studentSubject = new ArrayList<>();
     }
 
     //학생 이름 배열에 저장, 숫자 입력시 재입력 요구
@@ -135,11 +124,6 @@ public class StudentRegistration {
         student.setSubjects(subjects);
     }
 
-    // 학생 과목명 getter
-    public ArrayList<String> getStudentSubject() {
-        return studentSubject;
-    }
-
     // 학생의 고유번호 배열에 저장.
     public void addStudentId(Student student) throws IOException {
         while (true) {
@@ -176,8 +160,5 @@ public class StudentRegistration {
         System.out.print("등록할 학생의 상태 입력 (Green, Yellow, Red 중 한 가지를 입력해주세요.): ");
         student.setStatus(br.readLine());
     }
-    // 학생 고유번호 getter
-    public ArrayList<Integer> getStudentId() {
-        return studentId;
-    }
+
 }
