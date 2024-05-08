@@ -33,6 +33,10 @@ class Score {
         return this.subjectId;
     }
 
+    public int getStudentId() {
+        return this.id;
+    }
+
     // 과목명 getter
     public String getSubjectName() {
         String str = "";
@@ -71,6 +75,10 @@ class Score {
             }
         }
 
+        return divideGrade(type);
+    }
+
+    private String divideGrade(String type) {
         if (type.equals("필수")) {
             if (score >= 95) {
                 return "A";
@@ -103,15 +111,34 @@ class Score {
         return "";
     }
 
-    public static String calculateGradeWithId(int score, int id) {
+    // 현재 선택한 Score의 과목 타입을 알 수 있는 메서드
+    public String getType() {
         String type = "";
+        for (Subject s : Main.subjects) {
+            if (s.getId() == subjectId) {
+                type = s.getType();
+                break;
+            }
+        }
+        return type;
+    }
 
+    // 과목 id를 가지고 과목 타입을 찾을 수 있는 메서드
+    public static String getTypeById(int id) {
+        String type = "";
         for (Subject s : Main.subjects) {
             if (s.getId() == id) {
                 type = s.getType();
                 break;
             }
         }
+        return type;
+    }
+
+    public static String calculateGradeWithId(int score, int id) {
+        String type = "";
+
+        type = getTypeById(id);
 
         if (type.equals("필수")) {
             if (score >= 95) {
