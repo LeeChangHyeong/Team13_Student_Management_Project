@@ -112,8 +112,17 @@ public class StudentRegistration {
                     }
                 }
             } else if (choice.equals("4")) {
-                System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
-                studentListManager.modifyStudent(Integer.parseInt(br.readLine()));
+                while (true) {
+                    System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                    String input = br.readLine();
+                    try {
+                        int checkStudentNumber = Integer.parseInt(input);
+                        studentListManager.modifyStudent(checkStudentNumber);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("숫자만 입력하세요!");
+                    }
+                }
             } else if (choice.equals("5")) {
                 System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
                 studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
