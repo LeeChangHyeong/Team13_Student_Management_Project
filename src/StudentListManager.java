@@ -66,7 +66,6 @@ public class StudentListManager {
             student.getChoiceSubjcetList();
             System.out.println();
 
-            A:
             while (true) {
                 System.out.print("수정할 이름을 입력하세요: ");
                 String newName = br.readLine();
@@ -74,34 +73,33 @@ public class StudentListManager {
                     student.setName(newName);
                     System.out.println("------------------------------------");
                     System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
+                    break;
                 } else {
                     if (newName.isEmpty()) {
                         System.out.println("이름에는 공백값이 입력될 수 없습니다.");
-                        continue;
                     } else {
                         System.out.println("이름에는 숫자가 포함될 수 없습니다.");
-                        continue;
                     }
                 }
-                while (true) {
-                    System.out.println("------------------------------------");
-                    System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
-                    String newStatus = br.readLine();
-                    if (newStatus == "Green" || newStatus == "Red" || newStatus == "Yellow") {
-                        student.setStatus(newStatus);
-                        System.out.println("------------------------------------");
-                        System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
-                        break A;
-                    } else {
-                        System.out.println("정확한 상태명을 입력해 주세요");
-                        break;
-                    }
-                }
-                System.out.println("------------------------------------");
-                System.out.println("변경된 정보");
-                System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
-                System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
             }
+            while (true) {
+                System.out.println("------------------------------------");
+                System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
+                String newStatus = br.readLine();
+                if (newStatus.equals("Green") || newStatus.equals("Red") || newStatus.equals("Yellow")) {
+                    student.setStatus(newStatus);
+                    System.out.println("------------------------------------");
+                    System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
+                    break;
+                } else {
+                    System.out.println("정확한 상태명을 입력해 주세요");
+                }
+            }
+            System.out.println("------------------------------------");
+            System.out.println("변경된 정보");
+            System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
+            System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
+
 
         }
     }
