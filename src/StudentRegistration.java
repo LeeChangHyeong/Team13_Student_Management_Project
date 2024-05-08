@@ -1,5 +1,3 @@
-package asd;
-
 import Exceptions.BadStatusException;
 
 import java.util.*;
@@ -65,7 +63,8 @@ public class StudentRegistration {
             System.out.println("정보 수정 (4)");
             System.out.println("정보 삭제 (5)");
             System.out.println("평균 등급 조회 (6)");
-            System.out.println("프로그램 종료 (7)");
+            System.out.println("수강생 개인 회차별 등급 조회 (7)");
+            System.out.println("프로그램 종료 (8)");
             System.out.print("입력 : ");
             String choice = br.readLine();
             System.out.println("-----------------------------------------");
@@ -133,6 +132,39 @@ public class StudentRegistration {
                     }
                 }
             } else if (choice.equals("7")) {
+                // ("수강생 개인 회차별 등급 조회 (7)");
+                while (true) {
+                    System.out.print("조회하고 싶은 수강생의 고유번호를 입력하세요: ");
+                    int id = Integer.parseInt(br.readLine());
+                    boolean isId = false;
+                    for(Student s: StudentRegistration.studentArrayList) {
+                        if (id == s.getId()) {
+                            isId = true;
+                            break;
+                        }
+                    }
+
+                    if(isId) {
+                        System.out.println("조회하고 싶은 과목을 입력하세요: ");
+                        String subject = br.readLine();
+                        boolean isSubject = false;
+                        for(Subject s: Main.subjects) {
+                            if (s.getName() == subject) {
+                                isSubject = true;
+                                break;
+                            }
+                        }
+                        if(isSubject) {
+                            GradeSearch.gradeSearch(id);
+                            break;
+                        } else {
+                            System.out.println("없는 과목입니다. 다시 입력하세요.");
+                        }
+                    } else {
+                        System.out.println("없는 수강생 고유 번호입니다. 다시 입력하세요.");
+                    }
+                }
+            } else if (choice.equals("8")){
                 return;
             } else {
                 System.out.println("정확한 번호를 입력하세요");

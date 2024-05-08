@@ -1,5 +1,3 @@
-package asd;
-
 public class ScoreManager {
     public static void inquiryAverageGradeBySubject() {
         // 과목별 총 점수의 합을 저장할 배열

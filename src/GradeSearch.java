@@ -1,10 +1,8 @@
-package asd;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import asd.ScoreRegistration;
+
 public class GradeSearch {
     // 과목별 등급을 계산하는 메소드
     public static String calculateGrade(int score, String type) {
@@ -40,7 +38,17 @@ public class GradeSearch {
         return "";
     }
 
-    public  void comparison(String[] args) throws IOException {
+
+    public static void gradeSearch(int id) {
+        Student student = new Student();
+        for(Student s: StudentRegistration.studentArrayList) {
+            if (s.getId() == id) {
+                student = s;
+                break;
+            }
+        }
+    }
+    public void comparison(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         // 과목 리스트 생성

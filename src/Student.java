@@ -1,5 +1,3 @@
-package asd;
-
 import Exceptions.BadStatusException;
 
 public class Student {
