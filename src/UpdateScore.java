@@ -4,13 +4,13 @@ public class UpdateScore {
 
 
     private Scanner sc;
-    private ArrayList<Score> scoreList;
-    private ArrayList<Score> findByStudentIdScoreList = new ArrayList<>();;
+    private ArrayList<Score2> scoreList;
+    private ArrayList<Score2> findByStudentIdScoreList = new ArrayList<>();;
 
-    private ArrayList<Score> findByRoundScoreList = new ArrayList<>();;
-    private Score findBySubjetcScore;
+    private ArrayList<Score2> findByRoundScoreList = new ArrayList<>();;
+    private Score2 findBySubjetcScore;
 
-    public UpdateScore(ArrayList<Score> scoreList) {
+    public UpdateScore(ArrayList<Score2> scoreList) {
         this.scoreList = scoreList;
         this.sc = new Scanner(System.in);
     }
@@ -37,7 +37,7 @@ public class UpdateScore {
             System.out.println("변경할 수강생 ID를 입력하세요.");
             studentId = sc.next();
 
-            for(Score score : scoreList){
+            for(Score2 score : scoreList){
                 if(score.getStudentId().equals(studentId)){
                     findByStudentIdScoreList.add(score);
                     studentFound = true;
@@ -50,7 +50,7 @@ public class UpdateScore {
         }
         System.out.println("변경할 성적 리스트");
         System.out.println("--------------------------------------------");
-        for(Score score : findByStudentIdScoreList){
+        for(Score2 score : findByStudentIdScoreList){
             System.out.println("학생 아이디 : "+score.getStudentId());
             System.out.println("성적 아이디 : "+score.getScoreId());
             System.out.println("성적 회차 : "+score.getRound());
@@ -67,7 +67,7 @@ public class UpdateScore {
                 roundToUpdate = sc.nextInt(); // 정수 입력 받음
                 // 점수가 1과 10 사이인지 확인
                 if (roundToUpdate > 0 && roundToUpdate <= 10) {
-                    for(Score score : findByStudentIdScoreList){
+                    for(Score2 score : findByStudentIdScoreList){
                         if(score.getRound()==roundToUpdate){
                             findByRoundScoreList.add(score);
                         }
@@ -90,7 +90,7 @@ public class UpdateScore {
                 subjectToUpdate = sc.next();
 
                 if (validSubjects.contains(subjectToUpdate)) {
-                    for(Score score : findByStudentIdScoreList){
+                    for(Score2 score : findByStudentIdScoreList){
                         if(score.getSubject().equals(subjectToUpdate)){
                             findBySubjetcScore = score;
                         }
@@ -135,7 +135,7 @@ public class UpdateScore {
         //------------------------------------------------------------
         //------------------------------------------------------------
         System.out.println("변경을 완료했습니다.");
-        for (Score score : scoreList) {
+        for (Score2 score : scoreList) {
             if (score.getStudentId().equals(studentId) && score.getRound() == roundToUpdate && score.getSubject().equals(subjectToUpdate)) {
                 System.out.println("--------------------------------------------");
                 System.out.println("학생 아이디 : " + score.getStudentId());

@@ -1,5 +1,5 @@
 
-public class Score {
+public class Score2 {
     private String subject; // 과목명
     private int round;      // 회차
     private int score;      // 점수
@@ -7,7 +7,7 @@ public class Score {
     private String studentId;
     private String ScoreId;
 
-    public Score(String subject, int round, int score, String grade, String studentId, String scoreId) {
+    public Score2(String subject, int round, int score, String grade, String studentId, String scoreId) {
         this.subject = subject;
         this.round = round;
         this.score = score;
