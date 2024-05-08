@@ -60,9 +60,20 @@ public class StudentRegistration {
                         System.out.println("올바른 숫자를 입력해주세요.");
                     }
                 }
+            // 학생 고유번호에 int 타입이 아닌 값 입력시 재입력 요구 설정
             } else if (choice.equals("4")) {
-                System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
-                studentListManager.modifyStudent(Integer.parseInt(br.readLine()));
+                while (true) {
+                    System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                    String input = br.readLine();
+                    try {
+                        int checkStudentNumber = Integer.parseInt(input);
+                        studentListManager.modifyStudent(checkStudentNumber);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("숫자만 입력하세요!");
+                    }
+                }
+
             } else if (choice.equals("5")) {
                 System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
                 studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
@@ -89,7 +100,7 @@ public class StudentRegistration {
                 }
             }
             // 조규성 : 학생 이름에 숫자 + 문자가 올 경우 등록이 되는 버그 발생
-            // 조규성 : 위에 if (Character.hasDigit(c)) 을 if (Character.isDigit(c)) 으로 변경.
+            // 조규성 : if (Character.isDigit(c)) 으로 변경.
             if (isString) {
                 System.out.println("학생이름에는 숫자가 입력될 수 없습니다.");
             } else {
