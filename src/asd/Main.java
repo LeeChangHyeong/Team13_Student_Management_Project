@@ -1,3 +1,5 @@
+package asd;
+
 import Exceptions.BadStatusException;
 
 import java.io.IOException;

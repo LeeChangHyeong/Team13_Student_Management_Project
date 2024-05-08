@@ -1,6 +1,7 @@
+package asd;
+
 import Exceptions.BadStatusException;
 
-import javax.swing.text.Style;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-import java.util.*;
+package asd;
 
 // 점수 등록을 위한 ScoreEntry 클래스 정의
 class Score {

@@ -1,6 +1,6 @@
-import Exceptions.BadStatusException;
+package asd;
 
-import java.util.ArrayList;
+import Exceptions.BadStatusException;
 
 public class Student {
     private int id;

@@ -1,3 +1,5 @@
+package asd;
+
 import Exceptions.BadStatusException;
 
 public enum Status {
