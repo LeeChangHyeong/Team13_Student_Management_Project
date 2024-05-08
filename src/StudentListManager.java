@@ -94,9 +94,6 @@ public class StudentListManager {
         int count = 0;
         while (true) {
             if (status.equals("Green") || status.equals("Red") || status.equals("Yellow")) {
-
-
-
                 for (Student s : studentsList) {
                     System.out.println("수강생 고유번호: " + s.getId());
                     System.out.println("수강생 이름: " + s.getName());
