@@ -33,6 +33,10 @@ class Score {
         return this.subjectId;
     }
 
+    public int getStudentId() {
+        return this.id;
+    }
+
     // 과목명 getter
     public String getSubjectName() {
         String str = "";
