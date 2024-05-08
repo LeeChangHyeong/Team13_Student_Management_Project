@@ -42,6 +42,7 @@ public class StudentListManager {
         Student student = null;
         String lastName = null;
         Status lastStatus = null;
+
         for (Student s : studentsList) {
             if (s.getId() == studentNumber) {
                 student = s;
@@ -99,8 +100,6 @@ public class StudentListManager {
             System.out.println("변경된 정보");
             System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
-
-
         }
     }
 
