@@ -12,6 +12,29 @@ public class StudentRegistration {
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() throws BadStatusException, IOException {
+        Student lch = new Student();
+        Student karina = new Student();
+
+        ArrayList<String> lchMainSubjectList = new ArrayList<>();
+        ArrayList<String> lchChoiceSubjectList = new ArrayList<>();
+
+        ArrayList<String> karinaMainSubjectList = new ArrayList<>();
+        ArrayList<String> karinaChoiceSubjectList = new ArrayList<>();
+
+        lchMainSubjectList.add("Java");
+        lchMainSubjectList.add("객체지향");
+        lchMainSubjectList.add("JPA");
+        lchChoiceSubjectList.add("디자인 패턴");
+        lchChoiceSubjectList.add("MongoDB");
+
+        karinaMainSubjectList.add("Java");
+        karinaMainSubjectList.add("객체지향");
+        karinaMainSubjectList.add("Mysql");
+        karinaChoiceSubjectList.add("Redis");
+        karinaChoiceSubjectList.add("MongoDB");
+
+
+
         while (true) {
             System.out.println("-----------------------------------------");
             System.out.println("수강생 등록 (1)");
