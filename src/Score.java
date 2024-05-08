@@ -18,9 +18,9 @@ class Score {
     }
 
     // 과목 아이디로 과목명 가져오는 함수
-    public String getSubjectNameToId (int subjectId) {
+    static public String getSubjectNameToId(int subjectId) {
         String str = "";
-        for(Subject s: Main.subjects) {
+        for (Subject s : Main.subjects) {
             if (subjectId == s.getId()) {
                 str = s.getName();
                 break;
@@ -29,10 +29,14 @@ class Score {
         return str;
     }
 
+    public int getSubjectId() {
+        return this.subjectId;
+    }
+
     // 과목명 getter
     public String getSubjectName() {
         String str = "";
-        for(Subject s: Main.subjects) {
+        for (Subject s : Main.subjects) {
             if (subjectId == s.getId()) {
                 str = s.getName();
                 break;
@@ -60,8 +64,50 @@ class Score {
     private String calculateGrade(int score) {
         String type = "";
 
-        for(Subject s: Main.subjects) {
-            if(s.getId() == subjectId) {
+        for (Subject s : Main.subjects) {
+            if (s.getId() == subjectId) {
+                type = s.getType();
+                break;
+            }
+        }
+
+        if (type.equals("필수")) {
+            if (score >= 95) {
+                return "A";
+            } else if (score >= 90) {
+                return "B";
+            } else if (score >= 80) {
+                return "C";
+            } else if (score >= 70) {
+                return "D";
+            } else if (score >= 60) {
+                return "F";
+            } else {
+                return "N";
+            }
+        } else if (type.equals("선택")) {      //else로 바꿔도 됨
+            if (score >= 90) {
+                return "A";
+            } else if (score >= 80) {
+                return "B";
+            } else if (score >= 70) {
+                return "C";
+            } else if (score >= 60) {
+                return "D";
+            } else if (score >= 50) {
+                return "F";
+            } else {
+                return "N";
+            }
+        }
+        return "";
+    }
+
+    public static String calculateGradeWithId(int score, int id) {
+        String type = "";
+
+        for (Subject s : Main.subjects) {
+            if (s.getId() == id) {
                 type = s.getType();
                 break;
             }

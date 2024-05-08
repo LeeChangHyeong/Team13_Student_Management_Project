@@ -12,6 +12,29 @@ public class StudentRegistration {
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() throws BadStatusException, IOException {
+        Student lch = new Student();
+        Student karina = new Student();
+
+        ArrayList<String> lchMainSubjectList = new ArrayList<>();
+        ArrayList<String> lchChoiceSubjectList = new ArrayList<>();
+
+        ArrayList<String> karinaMainSubjectList = new ArrayList<>();
+        ArrayList<String> karinaChoiceSubjectList = new ArrayList<>();
+
+        lchMainSubjectList.add("Java");
+        lchMainSubjectList.add("객체지향");
+        lchMainSubjectList.add("JPA");
+        lchChoiceSubjectList.add("디자인 패턴");
+        lchChoiceSubjectList.add("MongoDB");
+
+        karinaMainSubjectList.add("Java");
+        karinaMainSubjectList.add("객체지향");
+        karinaMainSubjectList.add("Mysql");
+        karinaChoiceSubjectList.add("Redis");
+        karinaChoiceSubjectList.add("MongoDB");
+
+
+
         while (true) {
             System.out.println("-----------------------------------------");
             System.out.println("수강생 등록 (1)");
@@ -19,7 +42,8 @@ public class StudentRegistration {
             System.out.println("정보 보기 (3)");
             System.out.println("정보 수정 (4)");
             System.out.println("정보 삭제 (5)");
-            System.out.println("프로그램 종료 (6)");
+            System.out.println("평균 등급 조회 (6)");
+            System.out.println("프로그램 종료 (7)");
             System.out.print("입력 : ");
             String choice = br.readLine();
             System.out.println("-----------------------------------------");
@@ -34,13 +58,8 @@ public class StudentRegistration {
 
                 studentArrayList.add(student);
             } else if (choice.equals("2")) {
-                // TODO: 성적 등록 구현
-//                System.out.print("성적을 등록할 수강생의 고유 번호 입력: ");
-//                Score score = new Score(Integer.parseInt(br.readLine()));
                 ScoreRegistration scoreRegistration = new ScoreRegistration();
                 scoreRegistration.setScore();
-
-
             } else if (choice.equals("3")) {
                 while (true) {
                     System.out.println("전체 수강생 조회 (1)");
@@ -67,8 +86,11 @@ public class StudentRegistration {
                 System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
                 studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
             } else if (choice.equals("6")) {
+                ScoreManager.inquiryAverageGradeBySubject();
+            } else if (choice.equals("7")) {
                 return;
-            } else {
+            }
+            else {
                 System.out.println("정확한 번호를 입력하세요");
             }
         }
