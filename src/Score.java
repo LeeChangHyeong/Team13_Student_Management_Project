@@ -98,4 +98,46 @@ class Score {
         }
         return "";
     }
+
+    public static String calculateGradeWithId(int score, int id) {
+        String type = "";
+
+        for (Subject s : Main.subjects) {
+            if (s.getId() == id) {
+                type = s.getType();
+                break;
+            }
+        }
+
+        if (type.equals("필수")) {
+            if (score >= 95) {
+                return "A";
+            } else if (score >= 90) {
+                return "B";
+            } else if (score >= 80) {
+                return "C";
+            } else if (score >= 70) {
+                return "D";
+            } else if (score >= 60) {
+                return "F";
+            } else {
+                return "N";
+            }
+        } else if (type.equals("선택")) {      //else로 바꿔도 됨
+            if (score >= 90) {
+                return "A";
+            } else if (score >= 80) {
+                return "B";
+            } else if (score >= 70) {
+                return "C";
+            } else if (score >= 60) {
+                return "D";
+            } else if (score >= 50) {
+                return "F";
+            } else {
+                return "N";
+            }
+        }
+        return "";
+    }
 }
