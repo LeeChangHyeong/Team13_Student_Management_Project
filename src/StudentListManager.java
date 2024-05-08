@@ -126,6 +126,13 @@ public class StudentListManager {
     public void deleteStudentData(int studentNumber) {
         for (int i = 0; i < studentsList.size(); i++) {
             if (studentsList.get(i).getId() == studentNumber) {
+                // 점수도 같이 삭제
+                for(int j = 0; j<ScoreRegistration.scoreEntries.size(); j++) {
+                    if(ScoreRegistration.scoreEntries.get(j).getStudentId() == studentNumber) {
+                        ScoreRegistration.scoreEntries.remove(j);
+                    }
+                }
+
                 studentsList.remove(i);
                 System.out.println("학생 데이터가 성공적으로 삭제되었습니다.");
                 return;
