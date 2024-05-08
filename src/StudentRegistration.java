@@ -82,17 +82,26 @@ public class StudentRegistration {
                 scoreRegistration.setScore();
             } else if (choice.equals("3")) {
                 while (true) {
+                    System.out.println("-----------------------------------------");
                     System.out.println("전체 수강생 조회 (1)");
                     System.out.println("상태별 수강생 조회 (2)");
                     System.out.println("돌아가기 (3)");
                     System.out.print("입력 : ");
                     String str = br.readLine();
-                    System.out.println("-----------------------------------------");
                     if (str.equals("1")) {
                         studentListManager.printStudentList();
                     } else if (str.equals("2")) {
-                        System.out.print("조회하고 싶은 수강생 상태를 입력 (Green, Yellow, Red 중 하나를 입력하세요.): ");
-                        studentListManager.printStudentListByStatus(br.readLine());
+                        while (true) {
+                            System.out.print("조회하고 싶은 수강생 상태를 입력 (Green, Yellow, Red 중 하나를 입력하세요.): ");
+                            String status = br.readLine();
+                            if (status.equals("Green") || status.equals("Yellow") || status.equals("Red")) {
+                                studentListManager.printStudentListByStatus(status);
+                                break;
+                            } else {
+                                System.out.println("!!!!정확한 상태명을 입력하세요!!!!");
+                            }
+                        }
+
                     } else if (str.equals("3")) {
                         break;
                     } else {
