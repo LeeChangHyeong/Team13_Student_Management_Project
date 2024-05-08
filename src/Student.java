@@ -1,7 +1,5 @@
 import Exceptions.BadStatusException;
 
-import java.util.ArrayList;
-
 public class Student {
     private int id;
     private String name;

@@ -1,5 +1,3 @@
-import java.util.*;
-
 // 점수 등록을 위한 ScoreEntry 클래스 정의
 class Score {
     private int subjectId; // 과목 고유 번호

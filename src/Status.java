@@ -1,5 +1,3 @@
-import Exceptions.BadStatusException;
-
 public enum Status {
     Green("Green"),
     Red("Red"),
