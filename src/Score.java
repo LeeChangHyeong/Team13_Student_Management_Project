@@ -29,6 +29,10 @@ class Score {
         return str;
     }
 
+    public int getSubjectId() {
+        return this.subjectId;
+    }
+
     // 과목명 getter
     public String getSubjectName() {
         String str = "";
