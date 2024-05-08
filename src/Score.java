@@ -18,9 +18,9 @@ class Score {
     }
 
     // 과목 아이디로 과목명 가져오는 함수
-    public String getSubjectNameToId (int subjectId) {
+    static public String getSubjectNameToId(int subjectId) {
         String str = "";
-        for(Subject s: Main.subjects) {
+        for (Subject s : Main.subjects) {
             if (subjectId == s.getId()) {
                 str = s.getName();
                 break;
