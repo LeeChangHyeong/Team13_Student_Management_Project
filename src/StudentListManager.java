@@ -67,56 +67,62 @@ public class StudentListManager {
             student.getChoiceSubjcetList();
             System.out.println();
 
-                System.out.print("수정할 이름을 입력하세요: ");
-                    System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
-                System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
-                    System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
+            System.out.print("수정할 이름을 입력하세요: ");
+            student.setName(br.readLine());
+
+            System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
+            System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
+            student.setStatus(br.readLine());
+            System.out.println();
+            System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
+            System.out.println();
+
             System.out.println("변경된 정보");
+
             System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
         }
     }
 
     // 상태별 수강생 목록 조회
-    // 조규성 : 수강생 상태 잘못 입력시 예외처리로 프로그램 꺼짐, 처리중.
-    // 조규성 : 예외처리를 제거해서 if문으로만 오입력시 재입력 처리 요청 구축.
     public void printStudentListByStatus(String status) {
         System.out.println("-----------------------------------------");
         System.out.println("[" + status + "] 상태의 수강생 목록을 조회합니다.");
         System.out.println("-----------------------------------------");
         int count = 0;
-        while (true) {
-            if (status.equals("Green") || status.equals("Red") || status.equals("Yellow")) {
 
-                for (Student s : studentsList) {
-                    System.out.println("수강생 고유번호: " + s.getId());
-                    System.out.println("수강생 이름: " + s.getName());
-                    System.out.println("수강생 상태: " + s.getStatus());
-                    System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
-                    s.getMainSubjects();
-                    System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
-                    s.getChoiceSubjcetList();
-                    System.out.println();
-                    count++;
-                }
-                if (count == 0) {
-                    System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
-                    System.out.println("-----------------------------------------");
-                }
+        for (Student s : studentsList) {
+            if (s.getStatus() == Status.getStatusByString(status)) {
+                System.out.println("수강생 고유번호: " + s.getId());
+                System.out.println("수강생 이름: " + s.getName());
+                System.out.println("수강생 상태: " + s.getStatus());
+                System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
+                s.getMainSubjects();
+                System.out.print(s.getName() + "님이 선택한 선택 과목명: ");
+                s.getChoiceSubjcetList();
                 System.out.println();
-                break;
-            } else {
-                System.out.println("!!!!정확한 상태명을 입력하세요!!!!");
-                System.out.println("-----------------------------------------");
-                break;
+                count++;
             }
         }
+
+        if (count == 0) {
+            System.out.println("-----------------------------------------");
+            System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
+        }
+
     }
 
     // 수강생 데이터 삭제
     public void deleteStudentData(int studentNumber) {
         for (int i = 0; i < studentsList.size(); i++) {
             if (studentsList.get(i).getId() == studentNumber) {
+                // 점수도 같이 삭제
+                for(int j = 0; j<ScoreRegistration.scoreEntries.size(); j++) {
+                    if(ScoreRegistration.scoreEntries.get(j).getStudentId() == studentNumber) {
+                        ScoreRegistration.scoreEntries.remove(j);
+                    }
+                }
+
                 studentsList.remove(i);
                 System.out.println("학생 데이터가 성공적으로 삭제되었습니다.");
                 return;
