@@ -135,11 +135,23 @@ public class StudentRegistration {
                 // ("수강생 개인 회차별 등급 조회 (7)");
                 while (true) {
                     System.out.print("조회하고 싶은 수강생의 고유번호를 입력하세요: ");
-                    int id = Integer.parseInt(br.readLine());
+                    String id = br.readLine();
+
+                    try {
+                        int checkId = Integer.parseInt(id);
+                    } catch (NumberFormatException e) {
+                        System.out.println("숫자만 입력하세요!");
+                        continue;
+                    }
+
+                    int intId = Integer.parseInt(id);
+
                     boolean isId = false;
+                    String name = "";
                     for(Student s: StudentRegistration.studentArrayList) {
-                        if (id == s.getId()) {
+                        if (intId == s.getId()) {
                             isId = true;
+                            name = s.getName();
                             break;
                         }
                     }
@@ -149,13 +161,15 @@ public class StudentRegistration {
                         String subject = br.readLine();
                         boolean isSubject = false;
                         for(Subject s: Main.subjects) {
-                            if (s.getName() == subject) {
+                            if (s.getName().equals(subject)) {
                                 isSubject = true;
                                 break;
                             }
                         }
                         if(isSubject) {
-                            GradeSearch.gradeSearch(id);
+                            System.out.println(name + "님의 " + subject + "회차별 등급 조회");
+                            System.out.println("----------------------------------------");
+                            GradeSearch.gradeSearch(intId, subject);
                             break;
                         } else {
                             System.out.println("없는 과목입니다. 다시 입력하세요.");
