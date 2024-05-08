@@ -36,7 +36,7 @@ class Score {
     // 과목명 getter
     public String getSubjectName() {
         String str = "";
-        for(Subject s: Main.subjects) {
+        for (Subject s : Main.subjects) {
             if (subjectId == s.getId()) {
                 str = s.getName();
                 break;
@@ -64,8 +64,8 @@ class Score {
     private String calculateGrade(int score) {
         String type = "";
 
-        for(Subject s: Main.subjects) {
-            if(s.getId() == subjectId) {
+        for (Subject s : Main.subjects) {
+            if (s.getId() == subjectId) {
                 type = s.getType();
                 break;
             }
