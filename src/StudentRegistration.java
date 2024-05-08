@@ -99,68 +99,86 @@ public class StudentRegistration {
         }
     }
 
+    // 필수 과목명 검사 메소드
+    private boolean mainSubjectOk(String subject) {
+        Set<String> mainsubjectnameok = new HashSet<>();
+        mainsubjectnameok.add("Java");
+        mainsubjectnameok.add("객체지향");
+        mainsubjectnameok.add("Spring");
+        mainsubjectnameok.add("JPA");
+        mainsubjectnameok.add("MySQL");
+
+        return mainsubjectnameok.contains(subject);
+    }
+    // 선택 과목명 검사 메소드
+    private boolean choiceSubjectOk(String subject) {
+        Set<String> choicesubjectnameok = new HashSet<>();
+        choicesubjectnameok.add("디자인 패턴");
+        choicesubjectnameok.add("Spring Security");
+        choicesubjectnameok.add("Redis");
+        choicesubjectnameok.add("MongoDB");
+
+        return choicesubjectnameok.contains(subject);
+    }
+
     // 학생의 과목 이름 배열에 저장. 필수과목, 선택과목 나눠서 받기
     public void addStudentSubject(Student student, Subjects subjects) throws IOException {
         ArrayList<String> mainSubjectList = new ArrayList<>();
         ArrayList<String> choiceSubjectList = new ArrayList<>();
+        HashSet<String> existingSubjects = new HashSet<>(); // 이미 입력된 과목을 잠시 저장하여 검사하는데 사용함
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        A:
         while (true) {
             System.out.print("등록할 학생의 필수 과목 3개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
             String subject = br.readLine();
-            switch (subject) {
-                case "Java":
-                case "객체지향":
-                case "Spring":
-                case "JPA":
-                case "MySQL":
-                    mainSubjectList.add(subject);
+
+            if (subject.equals("exit")) {
+                if (mainSubjectList.size() < 3)  {
+                    System.out.println("3개 이상 입력해야 합니다.");
+                    continue;
+                } else {
                     break;
-                case "exit":
-                    if (subject.equals("exit") && mainSubjectList.size() >= 3) {
-                        break A;
-                    } else {
-                        System.out.println("-----------------------------------------");
-                        System.out.println("필수 과목을 3가지 이상 입력해주세요.");
-                        System.out.println("-----------------------------------------");
-                        break;
-                    }
-                default:
-                    System.out.println("-----------------------------------------");
-                    System.out.println("정확한 필수 과목명 입력");
-                    System.out.println("-----------------------------------------");
+                }
+            }
+            if (existingSubjects.contains(subject)) {
+                System.out.println("이미 입력된 과목입니다 재입력 하세요");
+                continue;
+            }
+            if (mainSubjectOk(subject)) {
+                mainSubjectList.add(subject);
+                existingSubjects.add(subject);
+            } else {
+                System.out.println("유효한 과목명을 입력하세요");
             }
         }
-        // 필수 과목 저장
-        subjects.setMainSubjects(mainSubjectList);
 
         // 선택과목 두가지 선택하는 로직
-        A:
         while (true) {
-            System.out.print("학생의 선택과목 2개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
+            System.out.print("등록할 학생의 선택 과목 2개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
             String subject = br.readLine();
-            switch (subject) {
-                case "디자인 패턴":
-                case "Spring Security":
-                case "Redis":
-                case "MongoDB":
-                    choiceSubjectList.add(subject);
+
+            if (subject.equals("exit")) {
+                if (choiceSubjectList.size() < 2)  {
+                    System.out.println("2개 이상 입력해야 합니다.");
+                    continue;
+                } else {
                     break;
-                case "exit":
-                    if (subject.equals("exit") && choiceSubjectList.size() >= 2) {
-                        break A;
-                    } else {
-                        System.out.println("선택 과목을 2가지 이상 입력해주세요.");
-                        break;
-                    }
-                default:
-                    System.out.println("정확한 선택과목명 입력");
+                }
+            }
+            if (existingSubjects.contains(subject)) {
+                System.out.println("이미 입력된 선택 과목입니다 재입력 하세요");
+                continue;
+            }
+            if (choiceSubjectOk(subject)) {
+                choiceSubjectList.add(subject);
+                existingSubjects.add(subject);
+            } else {
+                System.out.println("유효한 선택 과목명을 입력하세요");
             }
         }
-        // 선택 과목 저장
-        subjects.setChoiceSubjcetList(choiceSubjectList);
-
         // 학생 객체에 과목들 저장
+        subjects.setMainSubjects(mainSubjectList);
+        subjects.setChoiceSubjcetList(choiceSubjectList);
         student.setSubjects(subjects);
     }
 
