@@ -7,7 +7,7 @@ import java.io.*;
 public class StudentRegistration {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    private ArrayList<Student> studentArrayList = new ArrayList<>();
+    public static ArrayList<Student> studentArrayList = new ArrayList<>();
     private StudentListManager studentListManager = new StudentListManager(studentArrayList);
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
@@ -106,11 +106,24 @@ public class StudentRegistration {
                 System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
                 studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
             } else if (choice.equals("6")) {
-                ScoreManager.inquiryAverageGradeBySubject();
+                while (true) {
+                    System.out.println("모든 수강생의 과목별 평균 등급 조회 (1)");
+                    System.out.println("상태별 수강생의 필수 과목 평균 등급 조회 (2)");
+                    String str = br.readLine();
+                    if (str.equals("1")) {
+                        ScoreManager.inquiryAverageGradeBySubject();
+                        break;
+                    } else if (str.equals("2")) {
+                        System.out.print("조회하고 싶은 수강생들의 상태를 입력하세요 (Green, Yellow, Red 중 입력하세요.): ");
+                        ScoreManager.inquiryAverageGradeByStatus(br.readLine());
+                        break;
+                    } else {
+                        System.out.println("올바른 숫자를 입력해주세요.");
+                    }
+                }
             } else if (choice.equals("7")) {
                 return;
-            }
-            else {
+            } else {
                 System.out.println("정확한 번호를 입력하세요");
             }
         }
@@ -152,6 +165,7 @@ public class StudentRegistration {
 
         return mainsubjectnameok.contains(subject);
     }
+
     // 선택 과목명 검사 메소드
     private boolean choiceSubjectOk(String subject) {
         Set<String> choicesubjectnameok = new HashSet<>();
@@ -175,7 +189,7 @@ public class StudentRegistration {
             String subject = br.readLine();
 
             if (subject.equals("exit")) {
-                if (mainSubjectList.size() < 3)  {
+                if (mainSubjectList.size() < 3) {
                     System.out.println("3개 이상 입력해야 합니다.");
                     continue;
                 } else {
@@ -200,7 +214,7 @@ public class StudentRegistration {
             String subject = br.readLine();
 
             if (subject.equals("exit")) {
-                if (choiceSubjectList.size() < 2)  {
+                if (choiceSubjectList.size() < 2) {
                     System.out.println("2개 이상 입력해야 합니다.");
                     continue;
                 } else {
