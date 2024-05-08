@@ -98,6 +98,7 @@ public class StudentRegistration {
             }
         }
     }
+
     // 필수 과목명 검사 메소드
     private boolean mainSubjectOk(String subject) {
         Set<String> mainsubjectnameok = new HashSet<>();
