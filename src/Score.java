@@ -18,9 +18,9 @@ class Score {
     }
 
     // 과목 아이디로 과목명 가져오는 함수
-    public String getSubjectNameToId (int subjectId) {
+    static public String getSubjectNameToId(int subjectId) {
         String str = "";
-        for(Subject s: Main.subjects) {
+        for (Subject s : Main.subjects) {
             if (subjectId == s.getId()) {
                 str = s.getName();
                 break;
@@ -29,10 +29,18 @@ class Score {
         return str;
     }
 
+    public int getSubjectId() {
+        return this.subjectId;
+    }
+
+    public int getStudentId() {
+        return this.id;
+    }
+
     // 과목명 getter
     public String getSubjectName() {
         String str = "";
-        for(Subject s: Main.subjects) {
+        for (Subject s : Main.subjects) {
             if (subjectId == s.getId()) {
                 str = s.getName();
                 break;
@@ -60,12 +68,77 @@ class Score {
     private String calculateGrade(int score) {
         String type = "";
 
-        for(Subject s: Main.subjects) {
-            if(s.getId() == subjectId) {
+        for (Subject s : Main.subjects) {
+            if (s.getId() == subjectId) {
                 type = s.getType();
                 break;
             }
         }
+
+        return divideGrade(type);
+    }
+
+    private String divideGrade(String type) {
+        if (type.equals("필수")) {
+            if (score >= 95) {
+                return "A";
+            } else if (score >= 90) {
+                return "B";
+            } else if (score >= 80) {
+                return "C";
+            } else if (score >= 70) {
+                return "D";
+            } else if (score >= 60) {
+                return "F";
+            } else {
+                return "N";
+            }
+        } else if (type.equals("선택")) {      //else로 바꿔도 됨
+            if (score >= 90) {
+                return "A";
+            } else if (score >= 80) {
+                return "B";
+            } else if (score >= 70) {
+                return "C";
+            } else if (score >= 60) {
+                return "D";
+            } else if (score >= 50) {
+                return "F";
+            } else {
+                return "N";
+            }
+        }
+        return "";
+    }
+
+    // 현재 선택한 Score의 과목 타입을 알 수 있는 메서드
+    public String getType() {
+        String type = "";
+        for (Subject s : Main.subjects) {
+            if (s.getId() == subjectId) {
+                type = s.getType();
+                break;
+            }
+        }
+        return type;
+    }
+
+    // 과목 id를 가지고 과목 타입을 찾을 수 있는 메서드
+    public static String getTypeById(int id) {
+        String type = "";
+        for (Subject s : Main.subjects) {
+            if (s.getId() == id) {
+                type = s.getType();
+                break;
+            }
+        }
+        return type;
+    }
+
+    public static String calculateGradeWithId(int score, int id) {
+        String type = "";
+
+        type = getTypeById(id);
 
         if (type.equals("필수")) {
             if (score >= 95) {

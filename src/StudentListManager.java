@@ -67,11 +67,18 @@ public class StudentListManager {
             student.getChoiceSubjcetList();
             System.out.println();
 
-                System.out.print("수정할 이름을 입력하세요: ");
-                    System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
-                System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
-                    System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
+            System.out.print("수정할 이름을 입력하세요: ");
+            student.setName(br.readLine());
+
+            System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
+            System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
+            student.setStatus(br.readLine());
+            System.out.println();
+            System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
+            System.out.println();
+
             System.out.println("변경된 정보");
+
             System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
         }
@@ -87,6 +94,8 @@ public class StudentListManager {
         int count = 0;
         while (true) {
             if (status.equals("Green") || status.equals("Red") || status.equals("Yellow")) {
+
+
 
                 for (Student s : studentsList) {
                     System.out.println("수강생 고유번호: " + s.getId());
@@ -130,7 +139,7 @@ public class StudentListManager {
         boolean checkId = false;
         for (Student s : studentsList) {
             if (s.getId() == id) {
-                checkId = true;
+               checkId = true;
             }
         }
         return checkId;
