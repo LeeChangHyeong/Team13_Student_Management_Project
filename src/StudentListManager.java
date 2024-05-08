@@ -42,7 +42,6 @@ public class StudentListManager {
         Student student = null;
         String lastName = null;
         Status lastStatus = null;
-
         for (Student s : studentsList) {
             if (s.getId() == studentNumber) {
                 student = s;
@@ -67,20 +66,42 @@ public class StudentListManager {
             student.getChoiceSubjcetList();
             System.out.println();
 
-            System.out.print("수정할 이름을 입력하세요: ");
-            student.setName(br.readLine());
 
-            System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
-            System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
-            student.setStatus(br.readLine());
-            System.out.println();
-            System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
-            System.out.println();
-
+            while (true) {
+                System.out.print("수정할 이름을 입력하세요: ");
+                String newName = br.readLine();
+                if (!newName.isEmpty() && !newName.matches(".*\\d.*")) {
+                    student.setName(newName);
+                    System.out.println("------------------------------------");
+                    System.out.println("이름이 " + student.getName() + "으로 변경되었습니다.");
+                    break;
+                } else {
+                    if (newName.isEmpty()) {
+                        System.out.println("이름에는 공백값이 입력될 수 없습니다.");
+                    } else {
+                        System.out.println("이름에는 숫자가 포함될 수 없습니다.");
+                    }
+                }
+            }
+            while (true) {
+                System.out.println("------------------------------------");
+                System.out.print("수정할 상태를 입력하세요 (Green, Red, Yellow 중 하나를 입력하세요.): ");
+                String newStatus = br.readLine();
+                if (newStatus.equals("Green") || newStatus.equals("Red") || newStatus.equals("Yellow")) {
+                    student.setStatus(newStatus);
+                    System.out.println("------------------------------------");
+                    System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
+                    break;
+                } else {
+                    System.out.println("정확한 상태명을 입력해 주세요");
+                }
+            }
+            System.out.println("------------------------------------");
             System.out.println("변경된 정보");
-
             System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
+
+
         }
     }
 
@@ -117,8 +138,8 @@ public class StudentListManager {
         for (int i = 0; i < studentsList.size(); i++) {
             if (studentsList.get(i).getId() == studentNumber) {
                 // 점수도 같이 삭제
-                for(int j = 0; j<ScoreRegistration.scoreEntries.size(); j++) {
-                    if(ScoreRegistration.scoreEntries.get(j).getStudentId() == studentNumber) {
+                for (int j = 0; j < ScoreRegistration.scoreEntries.size(); j++) {
+                    if (ScoreRegistration.scoreEntries.get(j).getStudentId() == studentNumber) {
                         ScoreRegistration.scoreEntries.remove(j);
                     }
                 }
