@@ -12,27 +12,47 @@ public class StudentRegistration {
 
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() throws BadStatusException, IOException {
+        // 초기 데이터 등록
         Student lch = new Student();
         Student karina = new Student();
 
         ArrayList<String> lchMainSubjectList = new ArrayList<>();
         ArrayList<String> lchChoiceSubjectList = new ArrayList<>();
+        Subjects lchSubjects = new Subjects();
 
         ArrayList<String> karinaMainSubjectList = new ArrayList<>();
         ArrayList<String> karinaChoiceSubjectList = new ArrayList<>();
+        Subjects karinaSubjects = new Subjects();
 
         lchMainSubjectList.add("Java");
         lchMainSubjectList.add("객체지향");
         lchMainSubjectList.add("JPA");
         lchChoiceSubjectList.add("디자인 패턴");
         lchChoiceSubjectList.add("MongoDB");
+        lchSubjects.setMainSubjects(lchMainSubjectList);
+        lchSubjects.setChoiceSubjcetList(lchChoiceSubjectList);
 
         karinaMainSubjectList.add("Java");
         karinaMainSubjectList.add("객체지향");
         karinaMainSubjectList.add("Mysql");
         karinaChoiceSubjectList.add("Redis");
         karinaChoiceSubjectList.add("MongoDB");
+        karinaSubjects.setMainSubjects(karinaMainSubjectList);
+        karinaSubjects.setChoiceSubjcetList(karinaChoiceSubjectList);
 
+        lch.setSubjects(lchSubjects);
+        lch.setStatus("Red");
+        lch.setId(1);
+        lch.setName("이창형");
+
+        karina.setSubjects(karinaSubjects);
+        karina.setStatus("Green");
+        karina.setId(2);
+        karina.setName("카리나");
+
+
+        studentArrayList.add(lch);
+        studentArrayList.add(karina);
 
 
         while (true) {
