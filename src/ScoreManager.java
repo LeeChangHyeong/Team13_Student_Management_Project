@@ -28,31 +28,25 @@ public class ScoreManager {
     }
 
     public static void inquiryAverageGradeByStatus(String status) {
-        while (true) {
-            if (status.equals("Green") || status.equals("Red") || status.equals("Yellow")) {
-                System.out.println("-----------------------------------------");
-                System.out.println("[" + status + "] 상태의 수강생 필수 과목 평균 등급을 조회합니다.");
-                System.out.println("-----------------------------------------");
-                int count = 0;
-                for (Student s : StudentRegistration.studentArrayList) {
-                    System.out.println("수강생 이름: " + s.getName());
-                    System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
-                    s.getMainSubjects();
-                    System.out.println(s.getName() + "닝의 필수 과목 평균 등급: " + getAverageGradeById(s.getId()));
-                    System.out.println();
-                    count++;
-                }
-                if (count == 0) {
-                    System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
-                    System.out.println("-----------------------------------------");
-                }
+        System.out.println("-----------------------------------------");
+        System.out.println("[" + status + "] 상태의 수강생 필수 과목 평균 등급을 조회합니다.");
+        System.out.println("-----------------------------------------");
+        int count = 0;
+
+        for (Student s : StudentRegistration.studentArrayList) {
+            if (s.getStatus() == Status.getStatusByString(status)) {
+                System.out.println("수강생 이름: " + s.getName());
+                System.out.print(s.getName() + "님이 선택한 필수 과목명: ");
+                s.getMainSubjects();
+                System.out.println(s.getName() + "닝의 필수 과목 평균 등급: " + getAverageGradeById(s.getId()));
                 System.out.println();
-                break;
-            } else {
-                System.out.println("!!!!정확한 상태명을 입력하세요!!!!");
-                System.out.println("-----------------------------------------");
-                break;
+                count++;
             }
+        }
+
+        if (count == 0) {
+            System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
+            System.out.println("-----------------------------------------");
         }
     }
 
