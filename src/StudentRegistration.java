@@ -10,16 +10,16 @@ public class StudentRegistration {
     private ArrayList<Student> studentArrayList = new ArrayList<>();
     private StudentListManager studentListManager = new StudentListManager(studentArrayList);
 
-
     // 메인 클래스 내에서 객체화 시켜 사용하면 되는 메소드
     public void start() throws BadStatusException, IOException {
         while (true) {
             System.out.println("-----------------------------------------");
             System.out.println("수강생 등록 (1)");
-            System.out.println("정보 보기 (2)");
-            System.out.println("정보 수정 (3)");
-            System.out.println("정보 삭제 (4)");
-            System.out.println("프로그램 종료 (5)");
+            System.out.println("점수 등록 (2)");
+            System.out.println("정보 보기 (3)");
+            System.out.println("정보 수정 (4)");
+            System.out.println("정보 삭제 (5)");
+            System.out.println("프로그램 종료 (6)");
             System.out.print("입력 : ");
             String choice = br.readLine();
             System.out.println("-----------------------------------------");
@@ -34,6 +34,14 @@ public class StudentRegistration {
 
                 studentArrayList.add(student);
             } else if (choice.equals("2")) {
+                // TODO: 성적 등록 구현
+//                System.out.print("성적을 등록할 수강생의 고유 번호 입력: ");
+//                Score score = new Score(Integer.parseInt(br.readLine()));
+                ScoreRegistration scoreRegistration = new ScoreRegistration();
+                scoreRegistration.setScore();
+
+
+            } else if (choice.equals("3")) {
                 while (true) {
                     System.out.println("전체 수강생 조회 (1)");
                     System.out.println("상태별 수강생 조회 (2)");
@@ -52,13 +60,13 @@ public class StudentRegistration {
                         System.out.println("올바른 숫자를 입력해주세요.");
                     }
                 }
-            } else if (choice.equals("3")) {
+            } else if (choice.equals("4")) {
                 System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
                 studentListManager.modifyStudent(Integer.parseInt(br.readLine()));
-            } else if (choice.equals("4")) {
+            } else if (choice.equals("5")) {
                 System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
                 studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
-            } else if (choice.equals("5")) {
+            } else if (choice.equals("6")) {
                 return;
             } else {
                 System.out.println("정확한 번호를 입력하세요");
@@ -186,6 +194,7 @@ public class StudentRegistration {
             return false;
         }
     }
+
     // 학생의 상태 저장
     // 조규성 : 학생의 상태 오입력시 재입력 요구 코드 추가
     public void addStudentStatus(Student student) throws BadStatusException, IOException {
