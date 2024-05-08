@@ -1,5 +1,4 @@
 import Exceptions.BadStatusException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -108,7 +107,6 @@ public class StudentListManager {
             System.out.println("-----------------------------------------");
             System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
         }
-
     }
 
     // 수강생 데이터 삭제
