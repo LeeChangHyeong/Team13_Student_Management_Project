@@ -113,14 +113,32 @@ public class StudentRegistration {
                 }
             } else if (choice.equals("4")) {
                 while (true) {
-                    System.out.print("수정하고 싶은 수강생 고유번호 입력: ");
-                    String input = br.readLine();
-                    try {
-                        int checkStudentNumber = Integer.parseInt(input);
-                        studentListManager.modifyStudent(checkStudentNumber);
-                        break;
-                    } catch (NumberFormatException e) {
-                        System.out.println("숫자만 입력하세요!");
+                    System.out.println("수강생 이름, 상태 수정 (1)");
+                    System.out.println("수강생 특정 과목 회차별 점수 수정 (2)");
+                    String str = br.readLine();
+
+                    if (str.equals("1")) {
+                        System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                        String input = br.readLine();
+                        try {
+                            int checkStudentNumber = Integer.parseInt(input);
+                            studentListManager.modifyStudent(checkStudentNumber);
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("숫자만 입력하세요!");
+                        }
+                    } else if (str.equals("2")) {
+                        System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                        String input = br.readLine();
+                        try {
+                            int checkStudentNumber = Integer.parseInt(input);
+                            EditScore.editScore(checkStudentNumber);
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("숫자만 입력하세요!");
+                        }
+                    } else {
+                        System.out.println("올바른 숫자를 입력하세요!");
                     }
                 }
                 //조규성 : 삭제할 고유번호 오입력시 재입력 요구//
@@ -176,7 +194,7 @@ public class StudentRegistration {
 
                     boolean isId = false;
                     String name = "";
-                    for(Student s: StudentRegistration.studentArrayList) {
+                    for (Student s : StudentRegistration.studentArrayList) {
                         if (intId == s.getId()) {
                             isId = true;
                             name = s.getName();
@@ -188,13 +206,13 @@ public class StudentRegistration {
                         System.out.print("조회하고 싶은 과목을 입력하세요: ");
                         String subject = br.readLine();
                         boolean isSubject = false;
-                        for(Subject s: Main.subjects) {
+                        for (Subject s : Main.subjects) {
                             if (s.getName().equals(subject)) {
                                 isSubject = true;
                                 break;
                             }
                         }
-                        if(isSubject) {
+                        if (isSubject) {
                             System.out.println(name + "님의 " + subject + "회차별 등급 조회");
                             System.out.println("----------------------------------------");
                             GradeSearch.gradeSearch(intId, subject);
@@ -206,7 +224,7 @@ public class StudentRegistration {
                         System.out.println("없는 수강생 고유 번호입니다. 다시 입력하세요.");
                     }
                 }
-            } else if (choice.equals("8")){
+            } else if (choice.equals("8")) {
                 return;
             } else {
                 System.out.println("정확한 번호를 입력하세요");
@@ -240,7 +258,7 @@ public class StudentRegistration {
     }
 
     // 필수 과목명 검사 메소드
-    private boolean mainSubjectOk(String subject) {
+    public static boolean mainSubjectOk(String subject) {
         Set<String> mainsubjectnameok = new HashSet<>();
         mainsubjectnameok.add("Java");
         mainsubjectnameok.add("객체지향");
@@ -252,7 +270,7 @@ public class StudentRegistration {
     }
 
     // 선택 과목명 검사 메소드
-    private boolean choiceSubjectOk(String subject) {
+    public static boolean choiceSubjectOk(String subject) {
         Set<String> choicesubjectnameok = new HashSet<>();
         choicesubjectnameok.add("디자인 패턴");
         choicesubjectnameok.add("Spring Security");
