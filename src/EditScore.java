@@ -15,11 +15,13 @@ public class EditScore {
         }
 
         if (student == null) {
-            System.out.println("해당 고유번호로 등록된 수강생이 없습니다.");
+            System.out.println();
+            System.out.println("!오류: 해당 고유번호로 등록된 수강생이 없습니다.");
+            System.out.println();
             return;
         }
 
-        System.out.println("수정하고 싶으신 과목을 입력해주세요.");
+        System.out.print("수정하고 싶으신 과목을 입력해주세요: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String subject = br.readLine();
 
@@ -48,7 +50,9 @@ public class EditScore {
                 try {
                     int intRound = Integer.parseInt(round);
                 } catch (NumberFormatException e) {
-                    System.out.println("회차는 숫자로만 입력해 주세요.");
+                    System.out.println();
+                    System.out.println("!오류: 회차는 숫자로만 입력해 주세요.");
+                    System.out.println();
                     return;
                 }
 
@@ -62,7 +66,9 @@ public class EditScore {
                         try {
                             int intScore = Integer.parseInt(score);
                         } catch (NumberFormatException e) {
-                            System.out.println("점수는 숫자로만 입력해주세요.");
+                            System.out.println();
+                            System.out.println("!오류: 점수는 숫자로만 입력해주세요.");
+                            System.out.println();
                             continue;
                         }
 
@@ -79,18 +85,23 @@ public class EditScore {
                         break;
                     }
                 } else {
-                    System.out.println("올바른 회차를 입력하세요.");
+                    System.out.println();
+                    System.out.println("!오류: 올바른 회차를 입력하세요.");
+                    System.out.println();
                     return;
                 }
 
 
             } else {
-                System.out.println("-------------------------------------------------");
-                System.out.println("'" + subject + "'" + " 과목에 데이터가 없습니다.");
+                System.out.println();
+                System.out.println("!오류: '" + subject + "'" + " 과목에 데이터가 없습니다.");
+                System.out.println();
                 return;
             }
         } else {
-            System.out.println("올바른 과목을 입력해주세요.");
+            System.out.println();
+            System.out.println("!오류: 올바른 과목을 입력해주세요.");
+            System.out.println();
             return;
         }
 

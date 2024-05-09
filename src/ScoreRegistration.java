@@ -23,12 +23,16 @@ public class ScoreRegistration {
                     }
                 }
                 if (!studentFound) {
-                    System.out.println("고유번호가 없습니다!!");
+                    System.out.println("");
+                    System.out.println("!오류: 고유번호가 없습니다. ");
+                    System.out.println("");
                     continue A;
                 }
-
+                System.out.println("| 번호 | 타입 | 과목명 |");
+                System.out.println("         V");
                 for (Subject s : Main.subjects) {
-                    System.out.println("과목 고유번호: " + s.getId() + ", 과목 이름: " + s.getName() + ", 과목 타입: " + s.getType());
+
+                    System.out.println("| " + s.getId() + " | " + s.getType() + " | " + s.getName()+" |");
                 }
 
                 System.out.print("과목 고유 번호 입력: ");
@@ -42,7 +46,9 @@ public class ScoreRegistration {
                         }
                     }
                     if (!subjectFound) {
-                        System.out.println("과목 고유번호가 없습니다! 다시입력하세요!!!");
+                        System.out.println("");
+                        System.out.println("!오류: 과목 고유번호가 없습니다. 다시입력하세요");
+                        System.out.println("");
                         System.out.print("과목 고유 번호 입력 : ");
                         subjectId = Integer.parseInt(br.readLine());
                     }
@@ -51,7 +57,9 @@ public class ScoreRegistration {
                 System.out.println("회차를 입력하세요 (1 ~ 10 사이의 숫자): ");
                 int round = Integer.parseInt(br.readLine());
                 if (round < 1 || round > 10) {
-                    System.out.println("오류: 회차는 1부터 10 사이의 숫자여야 합니다.");
+                    System.out.println("");
+                    System.out.println("!오류: 회차는 1부터 10 사이의 숫자여야 합니다.");
+                    System.out.println("");
                     continue; // 잘못된 입력이면 반복문의 처음으로 돌아감
                 }
 
@@ -59,7 +67,9 @@ public class ScoreRegistration {
                 System.out.println("점수를 입력하세요 (0 ~ 100 사이의 숫자): ");
                 int score = Integer.parseInt(br.readLine());
                 if (score < 0 || score > 100) {
-                    System.out.println("오류: 점수는 0부터 100 사이의 숫자여야 합니다.");
+                    System.out.println("");
+                    System.out.println("!오류: 점수는 0부터 100 사이의 숫자여야 합니다.");
+                    System.out.println("");
                     continue; // 잘못된 입력이면 반복문의 처음으로 돌아감
                 }
 
@@ -67,7 +77,9 @@ public class ScoreRegistration {
                 boolean isDuplicate = false;
                 for (Score entry : scoreEntries) {
                     if (entry.getSubjectName() == entry.getSubjectNameToId(subjectId) && entry.getRound() == round) {
-                        System.out.println("오류: 이미 등록된 회차입니다.");
+                        System.out.println("");
+                        System.out.println("!오류: 이미 등록된 회차입니다.");
+                        System.out.println("");
                         isDuplicate = true;
                         break;
                     }
@@ -81,10 +93,10 @@ public class ScoreRegistration {
                 scoreEntries.add(newEntry);
 
                 // 사용자에게 성공적으로 등록되었음을 알림
-                System.out.println("회차 " + round + "의 점수가 성공적으로 등록되었습니다. (등급: " + newEntry.getGrade() + ")");
+                System.out.println("[" + round + "]" + "회차의 점수가 성공적으로 등록되었습니다. (등급: " + newEntry.getGrade() + " )");
 
                 while (true) {
-                    System.out.print("성적을 더 추가하시겠습니까? (1. 예, 2. 아니오) ");
+                    System.out.print("성적을 더 추가하시겠습니까? (1. 예, 2. 메인으로 돌아가기) ");
                     String str = br.readLine();
                     if("1".equals(str)) {
                         break;
@@ -93,8 +105,9 @@ public class ScoreRegistration {
                     }
                 }
             }catch(NumberFormatException e){
-                System.out.println("숫자 입력해주세요");
-                System.out.println("---------------------------------------");
+                System.out.println("");
+                System.out.println("!오류: 숫자를 입력해주세요  ");
+                System.out.println("");
             }
         }
         //반복문으로 되돌아감
