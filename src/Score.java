@@ -27,6 +27,14 @@ class Score {
         return str;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setGrade(int score) {
+        this.grade = calculateGrade(score);
+    }
+
     public int getSubjectId() {
         return this.subjectId;
     }
