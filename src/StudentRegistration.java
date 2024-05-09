@@ -141,9 +141,19 @@ public class StudentRegistration {
                         System.out.println("올바른 숫자를 입력하세요!");
                     }
                 }
+                //조규성 : 삭제할 고유번호 오입력시 재입력 요구//
             } else if (choice.equals("5")) {
-                System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
-                studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
+                while (true) {
+                    System.out.print("삭제하고 싶은 수강생 고유번호 입력: ");
+                    String input = br.readLine();
+                    try {
+                        int checkInt = Integer.parseInt(input);
+                        studentListManager.deleteStudentData(checkInt);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("숫자만 입력하세요!");
+                    }
+                }
             } else if (choice.equals("6")) {
 
                 while (true) {
@@ -154,9 +164,15 @@ public class StudentRegistration {
                         ScoreManager.inquiryAverageGradeBySubject();
                         break;
                     } else if (str.equals("2")) {
+                        // 조규성 : 수강생 상태 입력 3가지 외엔 재입력 요구 설정//
                         System.out.print("조회하고 싶은 수강생들의 상태를 입력하세요 (Green, Yellow, Red 중 입력하세요.): ");
-                        ScoreManager.inquiryAverageGradeByStatus(br.readLine());
-                        break;
+                        String color = br.readLine();
+                        if (color.equals("Red") || color.equals("Yellow") || color.equals("Green")) {
+                            ScoreManager.inquiryAverageGradeByStatus(color);
+                            break;
+                        } else {
+                            System.out.println("정확한 상태명을 입력해주세요!");
+                        }
                     } else {
                         System.out.println("올바른 숫자를 입력해주세요.");
                     }
@@ -186,8 +202,8 @@ public class StudentRegistration {
                         }
                     }
 
-                    if (isId) {
-                        System.out.println("조회하고 싶은 과목을 입력하세요: ");
+                    if(isId) {
+                        System.out.print("조회하고 싶은 과목을 입력하세요: ");
                         String subject = br.readLine();
                         boolean isSubject = false;
                         for (Subject s : Main.subjects) {
