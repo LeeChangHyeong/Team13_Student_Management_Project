@@ -65,7 +65,7 @@ public class StudentRegistration {
             System.out.println("평균 등급 조회 (6)");
             System.out.println("수강생 개인 회차별 등급 조회 (7)");
             System.out.println("프로그램 종료 (8)");
-          
+
             System.out.print("입력 : ");
             String choice = br.readLine();
             System.out.println("-----------------------------------------");
@@ -90,7 +90,7 @@ public class StudentRegistration {
                     System.out.println("돌아가기 (3)");
                     System.out.print("입력 : ");
                     String str = br.readLine();
-                  
+
                     if (str.equals("1")) {
                         studentListManager.printStudentList();
                     } else if (str.equals("2")) {
@@ -113,7 +113,7 @@ public class StudentRegistration {
                 }
             } else if (choice.equals("4")) {
                 while (true) {
-                    System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                    System.out.print("수정하고 싶은 수강생 고유번호 입력: ");
                     String input = br.readLine();
                     try {
                         int checkStudentNumber = Integer.parseInt(input);
@@ -123,11 +123,21 @@ public class StudentRegistration {
                         System.out.println("숫자만 입력하세요!");
                     }
                 }
+                //조규성 : 삭제할 고유번호 오입력시 재입력 요구//
             } else if (choice.equals("5")) {
-                System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
-                studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
+                while (true) {
+                    System.out.print("삭제하고 싶은 수강생 고유번호 입력: ");
+                    String input = br.readLine();
+                    try {
+                        int checkInt = Integer.parseInt(input);
+                        studentListManager.deleteStudentData(checkInt);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("숫자만 입력하세요!");
+                    }
+                }
             } else if (choice.equals("6")) {
-              
+
                 while (true) {
                     System.out.println("모든 수강생의 과목별 평균 등급 조회 (1)");
                     System.out.println("상태별 수강생의 필수 과목 평균 등급 조회 (2)");
@@ -136,9 +146,15 @@ public class StudentRegistration {
                         ScoreManager.inquiryAverageGradeBySubject();
                         break;
                     } else if (str.equals("2")) {
+                        // 조규성 : 수강생 상태 입력 3가지 외엔 재입력 요구 설정//
                         System.out.print("조회하고 싶은 수강생들의 상태를 입력하세요 (Green, Yellow, Red 중 입력하세요.): ");
-                        ScoreManager.inquiryAverageGradeByStatus(br.readLine());
-                        break;
+                        String color = br.readLine();
+                        if (color.equals("Red") || color.equals("Yellow") || color.equals("Green")) {
+                            ScoreManager.inquiryAverageGradeByStatus(color);
+                            break;
+                        } else {
+                            System.out.println("정확한 상태명을 입력해주세요!");
+                        }
                     } else {
                         System.out.println("올바른 숫자를 입력해주세요.");
                     }
@@ -169,7 +185,7 @@ public class StudentRegistration {
                     }
 
                     if(isId) {
-                        System.out.println("조회하고 싶은 과목을 입력하세요: ");
+                        System.out.print("조회하고 싶은 과목을 입력하세요: ");
                         String subject = br.readLine();
                         boolean isSubject = false;
                         for(Subject s: Main.subjects) {
