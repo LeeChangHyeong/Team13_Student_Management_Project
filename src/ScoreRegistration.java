@@ -13,6 +13,19 @@ public class ScoreRegistration {
             System.out.print("성적을 등록할 수강생의 고유 번호 입력: ");
             int id = Integer.parseInt(br.readLine());
 
+            boolean studentFound = false;       // 수강생이 있는지 여부를 나타내는 변수
+            // 수강생 고유 번호 검색
+            for(Student student : StudentRegistration.studentArrayList){
+                if(student.getId() == id){
+                    studentFound = true;
+                    break;
+                }
+            }
+            if(!studentFound){
+                System.out.println("고유번호가 없습니다.");
+                continue A;
+            }
+
             for(Subject s: Main.subjects) {
                 System.out.println("과목 고유번호: " + s.getId() +", 과목 이름: " + s.getName() + ", 과목 타입: " + s.getType());
             }
