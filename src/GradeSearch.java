@@ -16,7 +16,9 @@ public class GradeSearch {
         }
 
         if (count == 0) {
-            System.out.println("등록된 점수가 없습니다.");
+            System.out.println();
+            System.out.println("!오류: 등록된 점수가 없습니다.");
+            System.out.println();
         } else {
             map.entrySet().stream()
                     .sorted(Map.Entry.comparingByKey())

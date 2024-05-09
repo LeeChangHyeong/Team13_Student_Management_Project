@@ -19,7 +19,8 @@ public class StudentListManager {
         System.out.println("수강생 목록을 조회합니다.");
         System.out.println("-----------------------------------------");
         if (studentsList.size() < 1) {
-            System.out.println("등록된 수강생이 없습니다.");
+            System.out.println();
+            System.out.println("!오류: 등록된 수강생이 없습니다.");
             System.out.println();
         } else {
             for (Student s : studentsList) {
@@ -49,7 +50,9 @@ public class StudentListManager {
         }
 
         if (student == null) {
-            System.out.println("번호와 맞는 수강생이 없습니다.");
+            System.out.println("");
+            System.out.println("!오류: 번호와 맞는 수강생이 없습니다.");
+            System.out.println("");
         } else {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("----------------------------------");
@@ -75,9 +78,13 @@ public class StudentListManager {
                     break;
                 } else {
                     if (newName.isEmpty()) {
-                        System.out.println("이름에는 공백값이 입력될 수 없습니다.");
+                        System.out.println("");
+                        System.out.println("!오류 :이름에는 공백값이 입력될 수 없습니다.");
+                        System.out.println("");
                     } else {
-                        System.out.println("이름에는 숫자가 포함될 수 없습니다.");
+                        System.out.println("");
+                        System.out.println("!오류: 이름에는 숫자가 포함될 수 없습니다.");
+                        System.out.println("");
                     }
                 }
             }
@@ -91,7 +98,9 @@ public class StudentListManager {
                     System.out.println(student.getName() + "의 상태가 " + student.getStatus() + "(으)로 변경되었습니다.");
                     break;
                 } else {
-                    System.out.println("정확한 상태명을 입력해 주세요");
+                    System.out.println("");
+                    System.out.println("!오류 :정확한 상태명을 입력해 주세요");
+                    System.out.println("");
                 }
             }
             System.out.println("------------------------------------");
@@ -125,8 +134,9 @@ public class StudentListManager {
         }
 
         if (count == 0) {
-            System.out.println("-----------------------------------------");
-            System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
+            System.out.println("");
+            System.out.println("!오류: [" + status + "] 상태인 수강생이 없습니다.");
+            System.out.println("");
         }
     }
 
@@ -146,7 +156,9 @@ public class StudentListManager {
                 return;
             }
         }
-        System.out.println("해당 번호의 학생을 찾을 수 없습니다.");
+        System.out.println();
+        System.out.println("!오류: 해당 번호의 학생을 찾을 수 없습니다.");
+        System.out.println();
     }
 
     // 수강생 중복 id 검사

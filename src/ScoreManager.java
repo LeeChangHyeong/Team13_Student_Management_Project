@@ -45,8 +45,9 @@ public class ScoreManager {
         }
 
         if (count == 0) {
-            System.out.println("[" + status + "] 상태인 수강생이 없습니다.");
-            System.out.println("-----------------------------------------");
+            System.out.println();
+            System.out.println("!오류: [" + status + "] 상태인 수강생이 없습니다.");
+            System.out.println();
         }
     }
 
@@ -63,7 +64,8 @@ public class ScoreManager {
         }
 
         if (count == 0) {
-            return "아직 시험에 응시하지 않아 등급을 낼 수 없습니다.";
+            System.out.println();
+            return "!오류: 아직 시험에 응시하지 않아 등급을 낼 수 없습니다.";
         } else {
             int score = sum / count;
 

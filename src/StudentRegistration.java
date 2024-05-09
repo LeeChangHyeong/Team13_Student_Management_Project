@@ -101,14 +101,18 @@ public class StudentRegistration {
                                 studentListManager.printStudentListByStatus(status);
                                 break;
                             } else {
-                                System.out.println("!!!!정확한 상태명을 입력하세요!!!!");
+                                System.out.println();
+                                System.out.println("!오류: 정확한 상태명을 입력하세요.");
+                                System.out.println();
                             }
                         }
 
                     } else if (str.equals("3")) {
                         break;
                     } else {
-                        System.out.println("올바른 숫자를 입력해주세요.");
+                        System.out.println();
+                        System.out.println("!오류: 올바른 숫자를 입력해주세요.");
+                        System.out.println();
                     }
                 }
             } else if (choice.equals("4")) {
@@ -125,7 +129,9 @@ public class StudentRegistration {
                             studentListManager.modifyStudent(checkStudentNumber);
                             break;
                         } catch (NumberFormatException e) {
-                            System.out.println("숫자만 입력하세요!");
+                            System.out.println();
+                            System.out.println("!오류: 숫자만 입력하세요!");
+                            System.out.println();
                         }
                     } else if (str.equals("2")) {
                         System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
@@ -135,10 +141,14 @@ public class StudentRegistration {
                             EditScore.editScore(checkStudentNumber);
                             break;
                         } catch (NumberFormatException e) {
-                            System.out.println("숫자만 입력하세요!");
+                            System.out.println();
+                            System.out.println("!오류: 숫자만 입력하세요!");
+                            System.out.println();
                         }
                     } else {
-                        System.out.println("올바른 숫자를 입력하세요!");
+                        System.out.println();
+                        System.out.println("!오류: 올바른 숫자를 입력하세요!");
+                        System.out.println();
                     }
                 }
                 //조규성 : 삭제할 고유번호 오입력시 재입력 요구//
@@ -151,7 +161,9 @@ public class StudentRegistration {
                         studentListManager.deleteStudentData(checkInt);
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println("숫자만 입력하세요!");
+                        System.out.println();
+                        System.out.println("!오류: 숫자만 입력하세요!");
+                        System.out.println();
                     }
                 }
             } else if (choice.equals("6")) {
@@ -171,10 +183,14 @@ public class StudentRegistration {
                             ScoreManager.inquiryAverageGradeByStatus(color);
                             break;
                         } else {
-                            System.out.println("정확한 상태명을 입력해주세요!");
+                            System.out.println();
+                            System.out.println("!오류: 정확한 상태명을 입력해주세요!");
+                            System.out.println();
                         }
                     } else {
-                        System.out.println("올바른 숫자를 입력해주세요.");
+                        System.out.println();
+                        System.out.println("!오류: 올바른 숫자를 입력해주세요.");
+                        System.out.println();
                     }
                 }
             } else if (choice.equals("7")) {
@@ -186,7 +202,9 @@ public class StudentRegistration {
                     try {
                         int checkId = Integer.parseInt(id);
                     } catch (NumberFormatException e) {
-                        System.out.println("숫자만 입력하세요!");
+                        System.out.println();
+                        System.out.println("!오류: 숫자만 입력하세요!");
+                        System.out.println();
                         continue;
                     }
 
@@ -218,16 +236,22 @@ public class StudentRegistration {
                             GradeSearch.gradeSearch(intId, subject);
                             break;
                         } else {
-                            System.out.println("없는 과목입니다. 다시 입력하세요.");
+                            System.out.println();
+                            System.out.println("!오류: 없는 과목입니다. 다시 입력하세요.");
+                            System.out.println();
                         }
                     } else {
-                        System.out.println("없는 수강생 고유 번호입니다. 다시 입력하세요.");
+                        System.out.println();
+                        System.out.println("!오류: 없는 수강생 고유 번호입니다. 다시 입력하세요.");
+                        System.out.println();
                     }
                 }
             } else if (choice.equals("8")) {
                 return;
             } else {
-                System.out.println("정확한 번호를 입력하세요");
+                System.out.println();
+                System.out.println("!오류: 정확한 번호를 입력하세요");
+                System.out.println();
             }
         }
     }
@@ -249,7 +273,9 @@ public class StudentRegistration {
             // 조규성 : 학생 이름에 숫자 + 문자가 올 경우 등록이 되는 버그 발생
             // 조규성 : 위에 if (Character.hasDigit(c)) 을 if (Character.isDigit(c)) 으로 변경.
             if (isString) {
-                System.out.println("학생이름에는 숫자가 입력될 수 없습니다.");
+                System.out.println();
+                System.out.println("!오류: 학생이름에는 숫자가 입력될 수 없습니다.");
+                System.out.println();
             } else {
                 student.setName(name);
                 break;
@@ -293,21 +319,27 @@ public class StudentRegistration {
 
             if (subject.equals("exit")) {
                 if (mainSubjectList.size() < 3) {
-                    System.out.println("3개 이상 입력해야 합니다.");
+                    System.out.println();
+                    System.out.println("!오류: 3개 이상 입력해야 합니다.");
+                    System.out.println();
                     continue;
                 } else {
                     break;
                 }
             }
             if (existingSubjects.contains(subject)) {
-                System.out.println("이미 입력된 과목입니다 재입력 하세요");
+                System.out.println();
+                System.out.println("!오류: 이미 입력된 과목입니다 재입력 하세요");
+                System.out.println();
                 continue;
             }
             if (mainSubjectOk(subject)) {
                 mainSubjectList.add(subject);
                 existingSubjects.add(subject);
             } else {
-                System.out.println("유효한 과목명을 입력하세요");
+                System.out.println();
+                System.out.println("!오류: 유효한 과목명을 입력하세요");
+                System.out.println();
             }
         }
 
@@ -318,21 +350,27 @@ public class StudentRegistration {
 
             if (subject.equals("exit")) {
                 if (choiceSubjectList.size() < 2) {
-                    System.out.println("2개 이상 입력해야 합니다.");
+                    System.out.println();
+                    System.out.println("!오류: 2개 이상 입력해야 합니다.");
+                    System.out.println();
                     continue;
                 } else {
                     break;
                 }
             }
             if (existingSubjects.contains(subject)) {
-                System.out.println("이미 입력된 선택 과목입니다 재입력 하세요");
+                System.out.println();
+                System.out.println("!오류: 이미 입력된 선택 과목입니다 재입력 하세요");
+                System.out.println();
                 continue;
             }
             if (choiceSubjectOk(subject)) {
                 choiceSubjectList.add(subject);
                 existingSubjects.add(subject);
             } else {
-                System.out.println("유효한 선택 과목명을 입력하세요");
+                System.out.println();
+                System.out.println("!오류: 유효한 선택 과목명을 입력하세요");
+                System.out.println();
             }
         }
         // 학생 객체에 과목들 저장
@@ -349,16 +387,18 @@ public class StudentRegistration {
             if (isInteger(id)) {
                 // TODO: 나중에 Student 배열 관리할때 다시 구현 해야합니다.
                 if (studentListManager.idCheck(Integer.parseInt(id))) {
-                    System.out.println("-----------------------------------------");
-                    System.out.println("중복된 고유번호 입니다.");
-                    System.out.println("-----------------------------------------");
+                    System.out.println();
+                    System.out.println("!오류: 중복된 고유번호 입니다.");
+                    System.out.println();
                     continue;
                 } else {
                     student.setId(Integer.parseInt(id));
                 }
                 break;
             } else {
-                System.out.println("고유번호는 숫자만 입력이 가능합니다.");
+                System.out.println();
+                System.out.println("!오류: 고유번호는 숫자만 입력이 가능합니다.");
+                System.out.println();
             }
         }
     }
@@ -384,7 +424,9 @@ public class StudentRegistration {
                 student.setStatus(statusColor);
                 break;
             } else {
-                System.out.println("정확한 상태명을 입력해주세요");
+                System.out.println();
+                System.out.println("!오류: 정확한 상태명을 입력해주세요");
+                System.out.println();
             }
         }
     }
