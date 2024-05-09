@@ -21,7 +21,7 @@ public class EditScore {
             return;
         }
 
-        System.out.println("수정하고 싶으신 과목을 입력해주세요.");
+        System.out.print("수정하고 싶으신 과목을 입력해주세요: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String subject = br.readLine();
 

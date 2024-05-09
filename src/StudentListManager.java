@@ -152,7 +152,8 @@ public class StudentListManager {
                 }
 
                 studentsList.remove(i);
-                System.out.println("학생 데이터가 성공적으로 삭제되었습니다.");
+                System.out.println();
+                System.out.println("!! 학생 데이터가 성공적으로 삭제되었습니다. !!");
                 return;
             }
         }

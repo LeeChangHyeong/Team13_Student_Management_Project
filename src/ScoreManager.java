@@ -19,7 +19,7 @@ public class ScoreManager {
         // 과목별 평균 등급 출력
         for (int i = 0; i < 9; i++) {
             if (count[i] == 0) {
-                System.out.println("'" + Score.getSubjectNameToId(i) + "'을(를)" + " 응시한 수험생이 없습니다.");
+                System.out.println("[" + Score.getSubjectNameToId(i) + "]" + " 응시생 없음.");
             } else {
                 int average = sum[i] / count[i];
                 System.out.println("'" + Score.getSubjectNameToId(i) + "'의 평균 등급: " + Score.calculateGradeWithId(average, i));

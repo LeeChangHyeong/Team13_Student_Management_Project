@@ -54,17 +54,16 @@ public class StudentRegistration {
         studentArrayList.add(lch);
         studentArrayList.add(karina);
 
-
         while (true) {
             System.out.println("-----------------------------------------");
-            System.out.println("수강생 등록 (1)");
-            System.out.println("점수 등록 (2)");
-            System.out.println("정보 보기 (3)");
-            System.out.println("정보 수정 (4)");
-            System.out.println("정보 삭제 (5)");
-            System.out.println("평균 등급 조회 (6)");
-            System.out.println("수강생 개인 회차별 등급 조회 (7)");
-            System.out.println("프로그램 종료 (8)");
+            System.out.println("(1) 수강생 등록");
+            System.out.print("(2) 점수 등록");
+            System.out.println(" (3) 정보 보기");
+            System.out.print("(4) 정보 수정");
+            System.out.println(" (5) 정보 삭제");
+            System.out.println("(6) 평균 등급 조회");
+            System.out.println("(7) 수강생 개인 회차별 등급 조회");
+            System.out.println("(8) 프로그램 종료");
 
             System.out.print("입력 : ");
             String choice = br.readLine();
@@ -84,10 +83,9 @@ public class StudentRegistration {
                 scoreRegistration.setScore();
             } else if (choice.equals("3")) {
                 while (true) {
-                    System.out.println("-----------------------------------------");
-                    System.out.println("전체 수강생 조회 (1)");
-                    System.out.println("상태별 수강생 조회 (2)");
-                    System.out.println("돌아가기 (3)");
+                    System.out.println("(1) 전체 수강생 조회");
+                    System.out.println("(2) 상태별 수강생 조회");
+                    System.out.println("(3) 돌아가기");
                     System.out.print("입력 : ");
                     String str = br.readLine();
 
@@ -104,6 +102,7 @@ public class StudentRegistration {
                                 System.out.println();
                                 System.out.println("!오류: 정확한 상태명을 입력하세요.");
                                 System.out.println();
+                                break;
                             }
                         }
 
@@ -117,12 +116,13 @@ public class StudentRegistration {
                 }
             } else if (choice.equals("4")) {
                 while (true) {
-                    System.out.println("수강생 이름, 상태 수정 (1)");
-                    System.out.println("수강생 특정 과목 회차별 점수 수정 (2)");
+                    System.out.println("(1) 수강생 이름, 상태 수정");
+                    System.out.println("(2) 수강생 특정 과목 회차별 점수 수정");
+                    System.out.print("입력 : ");
                     String str = br.readLine();
 
                     if (str.equals("1")) {
-                        System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                        System.out.print("수정하고 싶은 수강생 고유번호 입력: ");
                         String input = br.readLine();
                         try {
                             int checkStudentNumber = Integer.parseInt(input);
@@ -134,7 +134,7 @@ public class StudentRegistration {
                             System.out.println();
                         }
                     } else if (str.equals("2")) {
-                        System.out.println("수정하고 싶은 수강생 고유번호 입력: ");
+                        System.out.print("수정하고 싶은 수강생 고유번호 입력: ");
                         String input = br.readLine();
                         try {
                             int checkStudentNumber = Integer.parseInt(input);
@@ -169,8 +169,9 @@ public class StudentRegistration {
             } else if (choice.equals("6")) {
 
                 while (true) {
-                    System.out.println("모든 수강생의 과목별 평균 등급 조회 (1)");
-                    System.out.println("상태별 수강생의 필수 과목 평균 등급 조회 (2)");
+                    System.out.println("(1) 모든 수강생의 과목별 평균 등급 조회");
+                    System.out.println("(2) 상태별 수강생의 필수 과목 평균 등급 조회");
+                    System.out.print("입력 : ");
                     String str = br.readLine();
                     if (str.equals("1")) {
                         ScoreManager.inquiryAverageGradeBySubject();
@@ -231,7 +232,7 @@ public class StudentRegistration {
                             }
                         }
                         if (isSubject) {
-                            System.out.println(name + "님의 " + subject + "회차별 등급 조회");
+                            System.out.println("[" + name + "]님의 [" + subject + "]회차별 등급 조회");
                             System.out.println("----------------------------------------");
                             GradeSearch.gradeSearch(intId, subject);
                             break;
@@ -312,9 +313,10 @@ public class StudentRegistration {
         ArrayList<String> choiceSubjectList = new ArrayList<>();
         HashSet<String> existingSubjects = new HashSet<>(); // 이미 입력된 과목을 잠시 저장하여 검사하는데 사용함
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        System.out.println();
+        System.out.println("!![필수] 과목 입력이 끝나면 <exit> 입력하세요!!");
         while (true) {
-            System.out.print("등록할 학생의 필수 과목 3개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
+            System.out.print("[필수] 과목 3개이상 입력 : ");
             String subject = br.readLine();
 
             if (subject.equals("exit")) {
@@ -342,10 +344,11 @@ public class StudentRegistration {
                 System.out.println();
             }
         }
-
+        System.out.println();
+        System.out.println("[선택] 과목 입력이 끝나면 exit를 입력하세요");
         // 선택과목 두가지 선택하는 로직
         while (true) {
-            System.out.print("등록할 학생의 선택 과목 2개이상 입력 (그만 입력 하시려면 exit을 입력하세요.): ");
+            System.out.print("[선택] 과목 2개이상 입력 : ");
             String subject = br.readLine();
 
             if (subject.equals("exit")) {
@@ -422,6 +425,8 @@ public class StudentRegistration {
                     || statusColor.equals("Yellow")
                     || statusColor.equals("Red")) {
                 student.setStatus(statusColor);
+                System.out.println();
+                System.out.println(" ! 저장 완료 !");
                 break;
             } else {
                 System.out.println();
