@@ -37,7 +37,7 @@
 <br>
 
 ## 🔨 개발환경
-- **Java 21**
+- **Java 7**
 - **SDK : openjdk-22**
 - **IDE : Intellij IDEA 2024.1**
 - **Tools : Github**
