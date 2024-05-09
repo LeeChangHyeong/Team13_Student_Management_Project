@@ -1,4 +1,5 @@
 import Exceptions.BadStatusException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -107,8 +108,6 @@ public class StudentListManager {
             System.out.println("변경된 정보");
             System.out.println("이름: " + lastName + " " + "->" + " " + student.getName());
             System.out.println("상태: " + lastStatus + " " + "->" + " " + student.getStatus());
-
-
         }
     }
 

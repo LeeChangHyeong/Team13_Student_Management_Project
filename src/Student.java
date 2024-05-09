@@ -33,6 +33,7 @@ public class Student {
     public void setStatus(String status) throws BadStatusException {
         this.status = Status.getStatusByString(status);
     }
+
     public void setSubjects(Subjects subjects) {
         this.subjects = subjects;
     }

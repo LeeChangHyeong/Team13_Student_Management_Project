@@ -9,7 +9,8 @@ public class ScoreRegistration {
 
     public void setScore() throws IOException {
         // 사용자가 종료를 입력할 때까지 반복
-        A: while (true) {
+        A:
+        while (true) {
             try {
                 System.out.print("성적을 등록할 수강생의 고유 번호 입력: ");
                 int id = Integer.parseInt(br.readLine());
@@ -32,13 +33,13 @@ public class ScoreRegistration {
                 System.out.println("         V");
                 for (Subject s : Main.subjects) {
 
-                    System.out.println("| " + s.getId() + " | " + s.getType() + " | " + s.getName()+" |");
+                    System.out.println("| " + s.getId() + " | " + s.getType() + " | " + s.getName() + " |");
                 }
 
                 System.out.print("과목 고유 번호 입력: ");
                 int subjectId = Integer.parseInt(br.readLine());
                 boolean subjectFound = false;
-                while(!subjectFound) {
+                while (!subjectFound) {
                     for (Subject s : Main.subjects) {
                         if (s.getId() == subjectId) {
                             subjectFound = true;
@@ -98,13 +99,13 @@ public class ScoreRegistration {
                 while (true) {
                     System.out.print("성적을 더 추가하시겠습니까? (1. 예, 2. 메인으로 돌아가기) ");
                     String str = br.readLine();
-                    if("1".equals(str)) {
+                    if ("1".equals(str)) {
                         break;
                     } else {
                         break A;
                     }
                 }
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("");
                 System.out.println("!오류: 숫자를 입력해주세요  ");
                 System.out.println("");

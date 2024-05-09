@@ -26,11 +26,11 @@ public class Subjects {
     // 전체 출력
     public void getAllSubjectList() {
         ArrayList<String> allSubjectList = new ArrayList<>();
-        for(String s: mainSubjectList) {
+        for (String s : mainSubjectList) {
             allSubjectList.add(s);
         }
 
-        for(String s: choiceSubjcetList) {
+        for (String s : choiceSubjcetList) {
             allSubjectList.add(s);
         }
 

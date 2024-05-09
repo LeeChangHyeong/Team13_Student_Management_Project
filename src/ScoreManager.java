@@ -22,7 +22,7 @@ public class ScoreManager {
                 System.out.println("[" + Score.getSubjectNameToId(i) + "]" + " 응시생 없음.");
             } else {
                 int average = sum[i] / count[i];
-                System.out.println("'" + Score.getSubjectNameToId(i) + "'의 평균 등급: " + Score.calculateGradeWithId(average, i));
+                System.out.println("[" + Score.getSubjectNameToId(i) + "]의 평균 등급: " + Score.calculateGradeWithId(average, i));
             }
         }
     }

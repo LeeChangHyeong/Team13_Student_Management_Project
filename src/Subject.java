@@ -20,6 +20,7 @@ public class Subject {
     public String getType() {
         return type;
     }
+
     public void setId(int id) {
         this.id = id;
     }

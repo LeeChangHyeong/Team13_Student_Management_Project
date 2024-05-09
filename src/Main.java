@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class Main {
     static ArrayList<Subject> subjects = new ArrayList<>();
-
-
     public static void main(String[] args) throws BadStatusException, IOException {
         // 초기 설정
         subjects.add(new Subject(0, "Java", "필수"));

@@ -221,7 +221,7 @@ public class StudentRegistration {
                         }
                     }
 
-                    if(isId) {
+                    if (isId) {
                         System.out.print("조회하고 싶은 과목을 입력하세요: ");
                         String subject = br.readLine();
                         boolean isSubject = false;
@@ -315,6 +315,13 @@ public class StudentRegistration {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println();
         System.out.println("!![필수] 과목 입력이 끝나면 <exit> 입력하세요!!");
+        // TODO: 필수 과목 출력
+        System.out.println();
+        for (Subject s : Main.subjects) {
+            if (s.getType().equals("필수")) {
+                System.out.println("| " + s.getType() + " | " + s.getName() + " |");
+            }
+        }
         while (true) {
             System.out.print("[필수] 과목 3개이상 입력 : ");
             String subject = br.readLine();
@@ -346,6 +353,13 @@ public class StudentRegistration {
         }
         System.out.println();
         System.out.println("[선택] 과목 입력이 끝나면 exit를 입력하세요");
+        // TODO: 선택 과목 출력
+        System.out.println();
+        for (Subject s : Main.subjects) {
+            if (s.getType().equals("선택")) {
+                System.out.println("| " + s.getType() + " | " + s.getName() + " |");
+            }
+        }
         // 선택과목 두가지 선택하는 로직
         while (true) {
             System.out.print("[선택] 과목 2개이상 입력 : ");

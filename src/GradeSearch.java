@@ -8,7 +8,7 @@ public class GradeSearch {
         // HashMap 대신 LinkedHashMap 사용
         Map<Integer, String> map = new LinkedHashMap<>();
 
-        for(Score s: ScoreRegistration.scoreEntries) {
+        for (Score s : ScoreRegistration.scoreEntries) {
             if (s.getStudentId() == id && s.getSubjectName().equals(subject)) {
                 map.put(s.getRound(), s.getGrade());
                 count++;
