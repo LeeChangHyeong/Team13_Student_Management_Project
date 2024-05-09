@@ -65,7 +65,7 @@ public class StudentRegistration {
             System.out.println("평균 등급 조회 (6)");
             System.out.println("수강생 개인 회차별 등급 조회 (7)");
             System.out.println("프로그램 종료 (8)");
-          
+
             System.out.print("입력 : ");
             String choice = br.readLine();
             System.out.println("-----------------------------------------");
@@ -90,7 +90,7 @@ public class StudentRegistration {
                     System.out.println("돌아가기 (3)");
                     System.out.print("입력 : ");
                     String str = br.readLine();
-                  
+
                     if (str.equals("1")) {
                         studentListManager.printStudentList();
                     } else if (str.equals("2")) {
@@ -123,11 +123,21 @@ public class StudentRegistration {
                         System.out.println("숫자만 입력하세요!");
                     }
                 }
+                //조규성 : 삭제할 고유번호 오입력시 재입력 요구//
             } else if (choice.equals("5")) {
-                System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
-                studentListManager.deleteStudentData(Integer.parseInt(br.readLine()));
+                while (true) {
+                    System.out.println("삭제하고 싶은 수강생 고유번호 입력: ");
+                    String input = br.readLine();
+                    try {
+                        int checkInt = Integer.parseInt(input);
+                        studentListManager.deleteStudentData(checkInt);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("숫자만 입력하세요!");
+                    }
+                }
             } else if (choice.equals("6")) {
-              
+
                 while (true) {
                     System.out.println("모든 수강생의 과목별 평균 등급 조회 (1)");
                     System.out.println("상태별 수강생의 필수 과목 평균 등급 조회 (2)");
